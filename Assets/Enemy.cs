@@ -11,25 +11,16 @@ public class Enemy : MonoBehaviour
     public float speed = 5;
     public int i = 1;
 
-    public GameObject gobj;
-    private PlayerController pcScript;
-
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
-        pcScript = GetComponent<PlayerController>();
     }
 
     private void FixedUpdate()
     {
-        //if (pcScript.isWalking == true)
-        //{
-        //    Walk();
-        //}
-        Walk();
+        //Walk();
     }
 
     private void Update()

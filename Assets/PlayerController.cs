@@ -68,14 +68,14 @@ public class PlayerController : MonoBehaviour
     public void Walk()
     {
         dirX = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(dirX, rb.velocity.y);
+        rb.velocity = new Vector2(dirX * speedUp, rb.velocity.y);
     }
 
     private void Run()
     {
         if (Input.GetKey(KeyCode.LeftShift) && ground == true)
         {
-            rb.velocity = new Vector2(dirX * 1.5f, rb.velocity.y); //1.5 - на сколько умножить скорость
+            rb.velocity = new Vector2(dirX * speedUp * 1.5f, rb.velocity.y); //1.5 - на сколько умножить скорость
             //anim.SetFloat("Speed", Mathf.Abs(dirX * speedUp));
         }
     }

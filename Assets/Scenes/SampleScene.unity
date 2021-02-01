@@ -218,9 +218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: 0
-  speedUp: 150
+  speedUp: 1
   isWalking: 0
-  jumpForce: 7
+  jumpForce: 2.8
   maxJumpValue: 1
 --- !u!70 &162857196
 CapsuleCollider2D:
@@ -344,8 +344,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162857194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.042, y: 0.168, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.29131368}
+  m_LocalPosition: {x: -1.203, y: -0.273, z: 0}
+  m_LocalScale: {x: 0.2913137, y: 0.2913137, z: 0.11050462}
   m_Children:
   - {fileID: 115330551}
   m_Father: {fileID: 0}
@@ -397,8 +397,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208982217}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.94, y: -0.55, z: 0}
-  m_LocalScale: {x: 2.3739066, y: 2.3739066, z: 2.3739066}
+  m_LocalPosition: {x: 0.438, y: -0.533, z: 0}
+  m_LocalScale: {x: 1.0352607, y: 1.0352607, z: 1.0352607}
   m_Children: []
   m_Father: {fileID: 1701506380}
   m_RootOrder: 0
@@ -795,7 +795,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.082525
+  orthographic size: 0.9151218
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -819,7 +819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.76, z: -10}
+  m_LocalPosition: {x: 0.39, y: 0.04, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -838,6 +838,7 @@ GameObject:
   - component: {fileID: 768584025}
   - component: {fileID: 768584026}
   - component: {fileID: 768584027}
+  - component: {fileID: 768584028}
   m_Layer: 0
   m_Name: The Darkness
   m_TagString: Untagged
@@ -904,8 +905,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768584022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.33, y: 0.99, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: -0.009, y: 0.229, z: 0}
+  m_LocalScale: {x: 1.5207266, y: 1.5207266, z: 0.50690883}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -966,6 +967,21 @@ CapsuleCollider2D:
   m_Offset: {x: -0.03, y: -0.41}
   m_Size: {x: 0.4, y: 0.15}
   m_Direction: 1
+--- !u!114 &768584028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768584022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc58891ac16579e45907fd9c827ce5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  i: 1
+  gobj: {fileID: 0}
 --- !u!1 &1289628616
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,8 +1008,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289628616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.56, y: -3.39, z: 0}
-  m_LocalScale: {x: 2.9066987, y: 2.9066987, z: 2.9066987}
+  m_LocalPosition: {x: 1.02, y: -2.15, z: 0}
+  m_LocalScale: {x: 1.4027442, y: 1.4027442, z: 1.4027442}
   m_Children: []
   m_Father: {fileID: 1509122886}
   m_RootOrder: 0
@@ -1304,7 +1320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356960860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.7, y: -0.12, z: 0}
+  m_LocalPosition: {x: 1.44, y: -0.55, z: 0}
   m_LocalScale: {x: 1.2165, y: 1.2165, z: 1.2165}
   m_Children: []
   m_Father: {fileID: 0}
