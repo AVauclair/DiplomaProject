@@ -7,11 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     public bool ground;
     float dirX;
-    public float jumpForce = 2.8f;
     public float speedUp = 1.5f;
 
     private bool afterJump = false;
     private bool isFacingRight = true;
+    public bool isWalking = false;
 
     Rigidbody2D rb;
     Animator anim;
@@ -42,20 +42,21 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetBool("ground", ground);
 
-        if (Input.GetAxis("Horizontal") != 0 && ground == true)
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            anim.SetBool("runIsOn", true);
+            if (Input.GetAxis("Horizontal") != 0 && ground == true)
+            {
+                anim.SetBool("runIsOn", true);
+                isWalking = true;
+            }
         }
-        if (Input.GetAxis("Horizontal") == 0 && ground == true)
+        if (Input.GetAxis("Horizontal") == 0)
         {
             anim.SetBool("runIsOn", false);
+            isWalking = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && ground == true)
-        {
-            Jump();
-            afterJump = true;
-        }
+        Jump();
 
         if (rb.velocity.y == 0 && afterJump == true)
         {
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Walk()
+    public void Walk()
     {
         dirX = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(dirX, rb.velocity.y);
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && ground == true)
         {
             rb.velocity = new Vector2(dirX * 1.5f, rb.velocity.y); //1.5 - на сколько умножить скорость
-            anim.SetFloat("Speed", Mathf.Abs(dirX * speedUp));
+            //anim.SetFloat("Speed", Mathf.Abs(dirX * speedUp));
         }
     }
 
@@ -83,18 +84,35 @@ public class PlayerController : MonoBehaviour
     {
         if ((dirX > 0 && !isFacingRight) || (dirX < 0 && isFacingRight))
         {
-            transform.Rotate(0.0f, 180.0f, 0.0f); //один из методов поворота персонажа
-            //transform.localScale *= new Vector2(-1, 1); //один из методов поворота персонажа
+            //transform.Rotate(0.0f, 180.0f, 0.0f); //один из методов поворота персонажа
+            transform.localScale *= new Vector2(-1, 1); //один из методов поворота персонажа
             isFacingRight = !isFacingRight;
         }
     }
 
+    public float jumpForce = 2.8f;
+    private int jumpCount = 0;
+    public int maxJumpValue = 1;
     private void Jump()
     {
-        anim.SetBool("runIsOn", false);
-        anim.SetBool("jumpIsOn", true);
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce); //один из методов установки прыжка
-                                                             //rb.AddForce(transform.up * 2.8f, ForceMode2D.Impulse); //один из методов установки
+        if (Input.GetKeyDown(KeyCode.Space) && (ground == true || (++jumpCount < maxJumpValue)))
+        {
+            if (jumpCount > 0)
+            {
+                rb.velocity = new Vector2(dirX, 0);
+            }
+            afterJump = true;
+
+            anim.SetBool("runIsOn", false);
+            anim.SetBool("jumpIsOn", true);
+            //rb.velocity = new Vector2(rb.velocity.x, jumpForce); //один из методов установки прыжка
+            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse); //один из методов установки
+
+            if (ground == true)
+            {
+                jumpCount = 0;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

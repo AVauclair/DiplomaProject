@@ -8,11 +8,11 @@ public class Enemy : MonoBehaviour
     Animator anim;
     SpriteRenderer sr;
 
-    public int distance = 1;
-    float maxDistance;
-    float minDistance;
-    float speed = 1f;
-    private bool isFacingRight = true;
+    public float speed = 5;
+    public int i = 1;
+
+    public GameObject gobj;
+    private PlayerController pcScript;
 
     private void Start()
     {
@@ -20,13 +20,16 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        maxDistance = transform.position.x + distance;
-        minDistance = transform.position.x - distance;
+        pcScript = GetComponent<PlayerController>();
     }
 
     private void FixedUpdate()
     {
-          Walk();
+        //if (pcScript.isWalking == true)
+        //{
+        //    Walk();
+        //}
+        Walk();
     }
 
     private void Update()
@@ -36,22 +39,22 @@ public class Enemy : MonoBehaviour
 
     private void Walk()
     {
-        transform.Translate(transform.right * Time.deltaTime * speed);
-        anim.SetInteger("Darkness", 1);
+        rb.velocity = new Vector2(i * speed, rb.velocity.y);
+        anim.SetBool("isWalking", true);
+    }
 
-        if (transform.position.x > maxDistance)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "border")
         {
-            speed = -speed;
-
-            transform.localScale *= new Vector2(-1, 1);
-            isFacingRight = !isFacingRight;
-        }
-        else if (transform.position.x < minDistance)
-        {
-            speed = -speed;
-
-            transform.localScale *= new Vector2(-1, 1);
-            isFacingRight = !isFacingRight;
+            if (i == 1)
+            {
+                i = -1;
+            }
+            else
+            {
+                i = 1;
+            }
         }
     }
 }
