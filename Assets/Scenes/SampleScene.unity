@@ -220,6 +220,7 @@ MonoBehaviour:
   ground: 0
   speedUp: 1
   isWalking: 0
+  pushImpulse: 1000
   jumpForce: 2.8
   maxJumpValue: 1
 --- !u!70 &162857196
@@ -257,7 +258,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 5c46bc85d48c5f14fa4ccc2c82b48624, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &162857198
 BoxCollider2D:
@@ -397,8 +398,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208982217}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.438, y: -0.533, z: 0}
-  m_LocalScale: {x: 1.0352607, y: 1.0352607, z: 1.0352607}
+  m_LocalPosition: {x: 0.239, y: -0.602, z: 0}
+  m_LocalScale: {x: 0.9242807, y: 0.9242807, z: 0.9242807}
   m_Children: []
   m_Father: {fileID: 1701506380}
   m_RootOrder: 0
@@ -905,8 +906,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768584022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.009, y: 0.229, z: 0}
-  m_LocalScale: {x: 1.5207266, y: 1.5207266, z: 0.50690883}
+  m_LocalPosition: {x: -0.359, y: -0.117, z: 0}
+  m_LocalScale: {x: 0.965053, y: 0.965053, z: 0.32168433}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -981,7 +982,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   i: 1
-  gobj: {fileID: 0}
 --- !u!1 &1289628616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,7 +1320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356960860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.44, y: -0.55, z: 0}
+  m_LocalPosition: {x: 1.2, y: -0.55, z: 0}
   m_LocalScale: {x: 1.2165, y: 1.2165, z: 1.2165}
   m_Children: []
   m_Father: {fileID: 0}

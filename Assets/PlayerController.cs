@@ -57,36 +57,12 @@ public class PlayerController : MonoBehaviour
         }
 
         Jump();
+        Push();
 
         if (rb.velocity.y == 0 && afterJump == true)
         {
             anim.SetBool("jumpIsOn", false);
             afterJump = false;
-        }
-    }
-
-    public void Walk()
-    {
-        dirX = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(dirX * speedUp, rb.velocity.y);
-    }
-
-    private void Run()
-    {
-        if (Input.GetKey(KeyCode.LeftShift) && ground == true)
-        {
-            rb.velocity = new Vector2(dirX * speedUp * 1.5f, rb.velocity.y); //1.5 - на сколько умножить скорость
-            //anim.SetFloat("Speed", Mathf.Abs(dirX * speedUp));
-        }
-    }
-
-    private void Flip()
-    {
-        if ((dirX > 0 && !isFacingRight) || (dirX < 0 && isFacingRight))
-        {
-            //transform.Rotate(0.0f, 180.0f, 0.0f); //один из методов поворота персонажа
-            transform.localScale *= new Vector2(-1, 1); //один из методов поворота персонажа
-            isFacingRight = !isFacingRight;
         }
     }
 
@@ -112,6 +88,54 @@ public class PlayerController : MonoBehaviour
             {
                 jumpCount = 0;
             }
+        }
+    }
+
+    public void Walk()
+    {
+        dirX = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(dirX * speedUp, rb.velocity.y);
+    }
+
+    private void Run()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && ground == true)
+        {
+            rb.velocity = new Vector2(dirX * speedUp * 1.5f, rb.velocity.y);
+        }
+    }
+
+    public int pushImpulse = 500;
+    private bool pushLock = false;
+    private void Push()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && pushLock == false)
+        {
+            pushLock = true;
+            PushLock(); //Invoke("PushLock", 2f);
+            if (isFacingRight == false)
+            {
+                rb.AddForce(Vector2.left * pushImpulse); //первый параметр - в каком направлении подтолкнуть, второй - с какой силой
+            }
+            else
+            {
+                rb.AddForce(Vector2.right * pushImpulse);
+            }
+        }
+    }
+
+    private void PushLock()
+    {
+        pushLock = false;
+    }
+
+    private void Flip()
+    {
+        if ((dirX > 0 && !isFacingRight) || (dirX < 0 && isFacingRight))
+        {
+            //transform.Rotate(0.0f, 180.0f, 0.0f); //один из методов поворота персонажа
+            transform.localScale *= new Vector2(-1, 1); //один из методов поворота персонажа
+            isFacingRight = !isFacingRight;
         }
     }
 
