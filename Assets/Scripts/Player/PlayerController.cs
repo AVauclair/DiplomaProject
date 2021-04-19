@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour
     public bool isWalking = false;
 
     public bool isDead = false;
-
-    Rigidbody2D rb;
-    Animator anim;
-    SpriteRenderer sr;
-    Transform tr;
+     
+    private Rigidbody2D rb;
+    private Animator anim;
+    private SpriteRenderer sr;
+    private Transform tr;
 
     private void Start()
     {
