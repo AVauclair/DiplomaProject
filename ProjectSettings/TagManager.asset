@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ground
   - Soul
+  - DialogManager
   layers:
   - Default
   - TransparentFX

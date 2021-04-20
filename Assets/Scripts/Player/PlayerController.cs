@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sr;
     private Transform tr;
 
+    private ScriptTrigger scriptTrigger;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,37 +42,59 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Walk();
-        Flip();
-        Run();
-        Crawl();
+        if (FindObjectOfType<ScriptTrigger>().inDialog == false)
+        {
+            Walk();
+            Flip();
+            Run();
+            Crawl();
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+            anim.SetBool("isRun", false);
+            anim.SetBool("isJump", false);
+            anim.SetBool("isCrawl", false);
+            anim.SetBool("ground", true);
+        }
     }
 
     private void Update()
     {
-        anim.SetBool("ground", ground);
-
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (FindObjectOfType<ScriptTrigger>().inDialog == false)
         {
-            if (Input.GetAxis("Horizontal") != 0 && ground)
+            anim.SetBool("ground", ground);
+
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
-                anim.SetBool("isRun", true);
-                isWalking = true;
+                if (Input.GetAxis("Horizontal") != 0 && ground)
+                {
+                    anim.SetBool("isRun", true);
+                    isWalking = true;
+                }
+            }
+            if (Input.GetAxis("Horizontal") == 0)
+            {
+                anim.SetBool("isRun", false);
+                isWalking = false;
+            }
+
+            Jump();
+            Push();
+
+            if (rb.velocity.y == 0 && afterJump)
+            {
+                anim.SetBool("isJump", false);
+                afterJump = false;
             }
         }
-        if (Input.GetAxis("Horizontal") == 0)
+        else
         {
+            rb.velocity = new Vector2(0, 0);
             anim.SetBool("isRun", false);
-            isWalking = false;
-        }
-
-        Jump();
-        Push();
-
-        if (rb.velocity.y == 0 && afterJump)
-        {
             anim.SetBool("isJump", false);
-            afterJump = false;
+            anim.SetBool("isCrawl", false);
+            anim.SetBool("ground", true);
         }
     }
 
