@@ -26,8 +26,7 @@ public class DialogManager : MonoBehaviour
 
     public void StartDialog(Dialog dialog)
     {
-        //FindObjectOfType<PlayerController>().enabled = false;
-        FindObjectOfType<ScriptTrigger>().inDialog = true;
+        FindObjectOfType<SelectDialog>().inDialog = true;
 
         animator.SetBool("isOpen", true);
 
@@ -69,9 +68,8 @@ public class DialogManager : MonoBehaviour
     public void EndDialog()
     {
         animator.SetBool("isOpen", false);
-        FindObjectOfType<ScriptTrigger>().inDialog = false;
-
-        //FindObjectOfType<PlayerController>().enabled = true;
+        FindObjectOfType<SelectDialog>().dialogNumber++;
+        FindObjectOfType<SelectDialog>().inDialog = false;
     }
 
 }

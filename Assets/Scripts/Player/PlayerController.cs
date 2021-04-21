@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (FindObjectOfType<ScriptTrigger>().inDialog == false)
+        if (FindObjectOfType<SelectDialog>().inDialog == false)
         {
             Walk();
             Flip();
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (FindObjectOfType<ScriptTrigger>().inDialog == false)
+        if (FindObjectOfType<SelectDialog>().inDialog == false)
         {
             anim.SetBool("ground", ground);
 
