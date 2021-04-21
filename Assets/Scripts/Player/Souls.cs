@@ -28,7 +28,7 @@ public class Souls : MonoBehaviour
             collision.transform.tag = "Untagged";
             Destroy(collision.gameObject);
             souls++;
-            textSouls.text = souls.ToString();
+            textSouls.text = (souls + 1).ToString();
         }
     }
 

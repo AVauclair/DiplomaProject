@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
 
             Jump();
             Push();
+            ShowInterface();
 
             if (rb.velocity.y == 0 && afterJump)
             {
@@ -203,6 +204,50 @@ public class PlayerController : MonoBehaviour
 
             isCrawling = false;
         }
+    }
+
+    private void ShowInterface()
+    {
+        ShowEquipment();
+        ShowInventory();
+    }
+
+    public Animator animEq;
+    bool isEquipOpen = false;
+    private void ShowEquipment()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            isEquipOpen = !isEquipOpen;
+            if (isEquipOpen == true)
+            {
+                animEq.SetBool("isOpen", true);
+            }
+            else
+            {
+                animEq.SetBool("isOpen", false);
+            }
+        }
+        
+    }
+
+    public Animator animInventory;
+    bool isInventoryOpen = false;
+    private void ShowInventory()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            isInventoryOpen = !isInventoryOpen;
+            if (isInventoryOpen == true)
+            {
+                animInventory.SetBool("isOpen", true);
+            }
+            else
+            {
+                animInventory.SetBool("isOpen", false);
+            }
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
