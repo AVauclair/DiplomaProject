@@ -29,7 +29,6 @@ public class DialogManager : MonoBehaviour
         FindObjectOfType<SelectDialog>().inDialog = true;
 
         animator.SetBool("isOpen", true);
-
         characterName.text = dialog.name;
         portrait.sprite = dialog.portrait;
 
@@ -46,7 +45,7 @@ public class DialogManager : MonoBehaviour
         if (lines.Count == 0)
         {
             EndDialog();
-            return;
+            //return; знайте этого негодяя в лицо, из-за которого у меня часа полтора ушло на то, чтобы понять, почему диалогнамбер++ плюсует дважды
         }
 
         string line = lines.Dequeue();
@@ -68,8 +67,8 @@ public class DialogManager : MonoBehaviour
     public void EndDialog()
     {
         animator.SetBool("isOpen", false);
-        FindObjectOfType<SelectDialog>().dialogNumber++;
         FindObjectOfType<SelectDialog>().inDialog = false;
+        FindObjectOfType<SelectDialog>().dialogNumber++;
     }
 
 }

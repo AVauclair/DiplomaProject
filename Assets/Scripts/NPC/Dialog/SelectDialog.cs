@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class SelectDialog : MonoBehaviour
 {
-    [Header("DialogObjects")]
-    public GameObject dialog1;
-    public GameObject dialog2;
-    public GameObject dialog3;
-    public GameObject dialog4;
-    public GameObject dialog5;
-
+    public GameObject[] dialogsObjects;
 
     public bool inTrigger = false;
     public bool inDialog = false;
-    public int dialogNumber = 1;
+
+    public int dialogNumber = 0;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -44,23 +39,9 @@ public class SelectDialog : MonoBehaviour
         {
             try
             {
-                switch (dialogNumber)
+                for (int i = -1; i < dialogNumber; i++)
                 {
-                    case 1:
-                        dialog1.GetComponent<ScriptTrigger>().dialogEvent.Invoke();
-                        break;
-                    case 2:
-                        dialog2.GetComponent<ScriptTrigger>().dialogEvent.Invoke();
-                        break;
-                    case 3:
-                        dialog3.GetComponent<ScriptTrigger>().dialogEvent.Invoke();
-                        break;
-                    case 4:
-                        dialog4.GetComponent<ScriptTrigger>().dialogEvent.Invoke();
-                        break;
-                    case 5:
-                        dialog5.GetComponent<ScriptTrigger>().dialogEvent.Invoke();
-                        break;
+                    dialogsObjects[dialogNumber].GetComponent<ScriptTrigger>().dialogEvent.Invoke();
                 }
             }
             catch { }
@@ -73,23 +54,9 @@ public class SelectDialog : MonoBehaviour
         {
             try
             {
-                switch (dialogNumber)
+                for (int i = -1; i < dialogNumber; i++)
                 {
-                    case 1:
-                        dialog1.GetComponent<ScriptTrigger>().nextLineEvent.Invoke();
-                        break;
-                    case 2:
-                        dialog2.GetComponent<ScriptTrigger>().nextLineEvent.Invoke();
-                        break;
-                    case 3:
-                        dialog3.GetComponent<ScriptTrigger>().nextLineEvent.Invoke();
-                        break;
-                    case 4:
-                        dialog4.GetComponent<ScriptTrigger>().nextLineEvent.Invoke();
-                        break;
-                    case 5:
-                        dialog5.GetComponent<ScriptTrigger>().nextLineEvent.Invoke();
-                        break;
+                    dialogsObjects[dialogNumber].GetComponent<ScriptTrigger>().nextLineEvent.Invoke();
                 }
             }
             catch { }
