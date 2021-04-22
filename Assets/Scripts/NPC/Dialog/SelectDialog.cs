@@ -16,6 +16,7 @@ public class SelectDialog : MonoBehaviour
         if (collision.tag == "Player")
         {
             inTrigger = true;
+            FindObjectOfType<DialogManager>().checker = gameObject;
         }
     }
 
@@ -24,6 +25,7 @@ public class SelectDialog : MonoBehaviour
         if (collision.tag == "Player")
         {
             inTrigger = false;
+            FindObjectOfType<DialogManager>().checker = null;
         }
     }
 

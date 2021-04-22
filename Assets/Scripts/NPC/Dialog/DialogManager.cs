@@ -17,6 +17,8 @@ public class DialogManager : MonoBehaviour
 
     private Queue<string> lines;
 
+    public GameObject checker;
+
     void Start()
     {
         lines = new Queue<string>();
@@ -26,10 +28,11 @@ public class DialogManager : MonoBehaviour
 
     public void StartDialog(Dialog dialog)
     {
-        FindObjectOfType<SelectDialog>().inDialog = true;
+        checker.GetComponent<SelectDialog>().inDialog = true;
 
         animator.SetBool("isOpen", true);
         characterName.text = dialog.name;
+        characterName.color = dialog.color;
         portrait.sprite = dialog.portrait;
 
         lines.Clear();
@@ -67,8 +70,8 @@ public class DialogManager : MonoBehaviour
     public void EndDialog()
     {
         animator.SetBool("isOpen", false);
-        FindObjectOfType<SelectDialog>().inDialog = false;
-        FindObjectOfType<SelectDialog>().dialogNumber++;
+        checker.GetComponent<SelectDialog>().inDialog = false;
+        checker.GetComponent<SelectDialog>().dialogNumber++;
     }
 
 }

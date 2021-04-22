@@ -42,60 +42,71 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (FindObjectOfType<SelectDialog>().inDialog == false)
+        if (FindObjectOfType<DialogManager>().checker != null)
+        {
+            if (FindObjectOfType<DialogManager>().checker.GetComponent<SelectDialog>().inDialog == false)
+            {
+                Walk();
+                Flip();
+                Run();
+                Crawl();
+            }
+            else
+            {
+                rb.velocity = new Vector2(0, 0);
+                anim.SetBool("isRun", false);
+                anim.SetBool("isJump", false);
+                anim.SetBool("isCrawl", false);
+                anim.SetBool("ground", true);
+            }
+        }
+        else
         {
             Walk();
             Flip();
             Run();
             Crawl();
         }
-        else
-        {
-            rb.velocity = new Vector2(0, 0);
-            anim.SetBool("isRun", false);
-            anim.SetBool("isJump", false);
-            anim.SetBool("isCrawl", false);
-            anim.SetBool("ground", true);
-        }
     }
 
     private void Update()
     {
-        if (FindObjectOfType<SelectDialog>().inDialog == false)
+        if (FindObjectOfType<DialogManager>().checker != null)
         {
-            anim.SetBool("ground", ground);
-
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            if (FindObjectOfType<DialogManager>().checker.GetComponent<SelectDialog>().inDialog == false)
             {
-                if (Input.GetAxis("Horizontal") != 0 && ground)
+                anim.SetBool("ground", ground);
+                Move();
+                Jump();
+                Push();
+                ShowInterface();
+                if (rb.velocity.y == 0 && afterJump)
                 {
-                    anim.SetBool("isRun", true);
-                    isWalking = true;
+                    anim.SetBool("isJump", false);
+                    afterJump = false;
                 }
             }
-            if (Input.GetAxis("Horizontal") == 0)
+            else
             {
+                rb.velocity = new Vector2(0, 0);
                 anim.SetBool("isRun", false);
-                isWalking = false;
+                anim.SetBool("isJump", false);
+                anim.SetBool("isCrawl", false);
+                anim.SetBool("ground", true);
             }
-
+        }
+        else
+        {
+            anim.SetBool("ground", ground);
+            Move();
             Jump();
             Push();
             ShowInterface();
-
             if (rb.velocity.y == 0 && afterJump)
             {
                 anim.SetBool("isJump", false);
                 afterJump = false;
             }
-        }
-        else
-        {
-            rb.velocity = new Vector2(0, 0);
-            anim.SetBool("isRun", false);
-            anim.SetBool("isJump", false);
-            anim.SetBool("isCrawl", false);
-            anim.SetBool("ground", true);
         }
     }
 
@@ -129,6 +140,23 @@ public class PlayerController : MonoBehaviour
         dirX = Input.GetAxisRaw("Horizontal");
         anim.SetFloat("moveX", Mathf.Abs(dirX));
         rb.velocity = new Vector2(dirX * speedUp, rb.velocity.y);
+    }
+
+    public void Move()
+    {
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            if (Input.GetAxis("Horizontal") != 0 && ground)
+            {
+                anim.SetBool("isRun", true);
+                isWalking = true;
+            }
+        }
+        if (Input.GetAxis("Horizontal") == 0)
+        {
+            anim.SetBool("isRun", false);
+            isWalking = false;
+        }
     }
 
     private void Run()
