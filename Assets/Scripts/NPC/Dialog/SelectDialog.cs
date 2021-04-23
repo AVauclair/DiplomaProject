@@ -8,6 +8,8 @@ public class SelectDialog : MonoBehaviour
 
     public bool inTrigger = false;
     public bool inDialog = false;
+    public bool willRepeat = false;
+    public int repeat = 0;
 
     public int dialogNumber = 0;
 

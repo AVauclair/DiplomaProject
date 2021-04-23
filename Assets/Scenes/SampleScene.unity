@@ -2354,7 +2354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &519547606
 Transform:
   m_ObjectHideFlags: 0
@@ -2412,6 +2412,8 @@ MonoBehaviour:
   - {fileID: 1926473265}
   inTrigger: 0
   inDialog: 0
+  willRepeat: 0
+  repeat: 0
   dialogNumber: 0
 --- !u!1 &527571787
 GameObject:
@@ -10160,6 +10162,8 @@ MonoBehaviour:
   - {fileID: 1500270814}
   inTrigger: 0
   inDialog: 0
+  willRepeat: 1
+  repeat: 0
   dialogNumber: 0
 --- !u!61 &1760342167
 BoxCollider2D:
@@ -10966,6 +10970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2056233271}
   - component: {fileID: 2056233270}
+  - component: {fileID: 2056233273}
   - component: {fileID: 2056233272}
   m_Layer: 0
   m_Name: DialogManager
@@ -11102,6 +11107,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2056233273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056233269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b079d9eddb4efd42a6943046d1b1df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneNumber: 0
+  dialogInPrison: {fileID: 1760342164}
+  makingNoise: {fileID: 519547605}
 --- !u!1 &2143779733
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,6 +72,45 @@ public class DialogManager : MonoBehaviour
         animator.SetBool("isOpen", false);
         checker.GetComponent<SelectDialog>().inDialog = false;
         checker.GetComponent<SelectDialog>().dialogNumber++;
+        StopAllCoroutines();
+
+        WillDialogRepeat();
+        SceneNumber();
     }
 
+    private bool canCalculateRepeat = false;
+    public void WillDialogRepeat()
+    {
+        if (checker.GetComponent<SelectDialog>().willRepeat == true && checker.GetComponent<SelectDialog>().dialogNumber == checker.GetComponent<SelectDialog>().dialogsObjects.Length)
+        {
+            checker.GetComponent<SelectDialog>().dialogNumber--;
+            canCalculateRepeat = true;
+        }
+    }
+
+    public void SceneNumber()
+    {
+        if (checker.GetComponent<SelectDialog>().willRepeat == true && canCalculateRepeat == true && 
+            (checker.GetComponent<SelectDialog>().dialogNumber + 1) == checker.GetComponent<SelectDialog>().dialogsObjects.Length)
+        {
+            if (checker.GetComponent<SelectDialog>().repeat == 0)
+            {
+                FindObjectOfType<ConditionScript>().sceneNumber++;
+                FindObjectOfType<ConditionScript>().ConditionsChecker();
+
+                checker.GetComponent<SelectDialog>().repeat++;
+            }
+        }
+
+        if (checker.GetComponent<SelectDialog>().willRepeat == false && checker.GetComponent<SelectDialog>().dialogNumber == checker.GetComponent<SelectDialog>().dialogsObjects.Length)
+        {
+            if (checker.GetComponent<SelectDialog>().repeat == 0)
+            {
+                FindObjectOfType<ConditionScript>().sceneNumber++;
+                FindObjectOfType<ConditionScript>().ConditionsChecker();
+
+                checker.GetComponent<SelectDialog>().repeat++;
+            }
+        }
+    }
 }
