@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
+using UnityEngine.Playables;
 
 public class ConditionScript : MonoBehaviour
 {
@@ -9,6 +11,10 @@ public class ConditionScript : MonoBehaviour
     [Header("ScenesObjects")]
     public GameObject dialogInPrison;
     public GameObject makingNoise;
+    public GameObject getFree;
+
+    [Header("Cutscenes")]
+    public PlayableDirector takeGuardian;
 
     public void ConditionsChecker()
     {
@@ -18,7 +24,10 @@ public class ConditionScript : MonoBehaviour
         }
         if (sceneNumber == 2)
         {
+            takeGuardian.Play();
+            makingNoise.SetActive(false);
             dialogInPrison.SetActive(false);
+            getFree.SetActive(true);
         }
     }
 }

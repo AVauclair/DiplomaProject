@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public float speedUp = 1f;
 
     private bool afterJump = false;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     public bool isWalking = false;
 
     public bool isDead = false;
