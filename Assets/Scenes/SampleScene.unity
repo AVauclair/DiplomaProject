@@ -525,6 +525,10 @@ MonoBehaviour:
   poseCrawl: {fileID: 162857202}
   animEq: {fileID: 2022751264}
   animInventory: {fileID: 399597208}
+  checkpointNumber: 0
+  posX: 0
+  posY: 0
+  posZ: 0
 --- !u!70 &162857196
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2202,7 +2206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &328924656
 Animator:
   serializedVersion: 3
@@ -2822,6 +2826,7 @@ MonoBehaviour:
   - {fileID: 1926473265}
   inTrigger: 0
   inDialog: 0
+  playAutomatically: 0
   willRepeat: 0
   repeat: 0
   dialogNumber: 0
@@ -10849,6 +10854,7 @@ MonoBehaviour:
   - {fileID: 1554568186}
   inTrigger: 0
   inDialog: 0
+  playAutomatically: 0
   willRepeat: 0
   repeat: 0
   dialogNumber: 0
@@ -11485,6 +11491,7 @@ MonoBehaviour:
   - {fileID: 1500270814}
   inTrigger: 0
   inDialog: 0
+  playAutomatically: 0
   willRepeat: 1
   repeat: 0
   dialogNumber: 0
@@ -11572,6 +11579,8 @@ PlayableDirector:
     value: {fileID: 897554045}
   - key: {fileID: 7817304367992873005, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
     value: {fileID: 328924659}
+  - key: {fileID: 2625519333261369145, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
+    value: {fileID: 328924655}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1850027709
@@ -12517,6 +12526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2131991175}
   - component: {fileID: 2131991176}
+  - component: {fileID: 2131991177}
   m_Layer: 0
   m_Name: CheckpointAfterJail
   m_TagString: Checkpoint
@@ -12551,7 +12561,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.19427872, y: -0.15655756}
+  m_Offset: {x: -0.3642621, y: -0.15655756}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12562,8 +12572,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3815937, y: 0.43514395}
+  m_Size: {x: 0.04162693, y: 0.43514395}
   m_EdgeRadius: 0
+--- !u!114 &2131991177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131991174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913f6c710d5299748913f92a9e7c4230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemapDoor: {fileID: 897554045}
 --- !u!1 &2143779733
 GameObject:
   m_ObjectHideFlags: 0

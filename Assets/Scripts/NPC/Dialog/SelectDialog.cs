@@ -8,6 +8,8 @@ public class SelectDialog : MonoBehaviour
 
     public bool inTrigger = false;
     public bool inDialog = false;
+
+    public bool playAutomatically = false;
     public bool willRepeat = false;
     public int repeat = 0;
 
@@ -20,6 +22,8 @@ public class SelectDialog : MonoBehaviour
             inTrigger = true;
             FindObjectOfType<DialogManager>().checker = gameObject;
         }
+
+        DialogPickerIfAutomatically();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -39,7 +43,22 @@ public class SelectDialog : MonoBehaviour
 
     private void DialogPicker()
     {
-        if (inTrigger == true && Input.GetKeyDown(KeyCode.E) && inDialog == false)
+        if (inTrigger == true && Input.GetKeyDown(KeyCode.E) && inDialog == false && playAutomatically == false)
+        {
+            try
+            {
+                for (int i = -1; i < dialogNumber; i++)
+                {
+                    dialogsObjects[dialogNumber].GetComponent<ScriptTrigger>().dialogEvent.Invoke();
+                }
+            }
+            catch { }
+        }
+    }
+
+    private void DialogPickerIfAutomatically()
+    {
+        if (inTrigger == true && inDialog == false && playAutomatically == true)
         {
             try
             {

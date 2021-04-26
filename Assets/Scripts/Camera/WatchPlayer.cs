@@ -5,13 +5,13 @@ using UnityEngine;
 public class WatchPlayer : MonoBehaviour
 {
     [SerializeField]
-    float leftLimit;
+    public float leftLimit;
     [SerializeField]
-    float rightLimit;
+    public float rightLimit;
     [SerializeField]
-    float downLimit;
+    public float downLimit;
     [SerializeField]
-    float upLimit;
+    public float upLimit;
 
     public float dumping = 1.5f;
     public Vector2 offset = new Vector2(2f, 1f);

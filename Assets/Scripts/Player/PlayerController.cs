@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         tr = GetComponent<Transform>();
+
+        CheckpointStart();
     }
 
     //Input.GetAxis для оси Х. Возвращает значение оси в пределах от -1 до 1.
@@ -71,6 +73,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        DeleteAllPrefs();
+
         if (FindObjectOfType<DialogManager>().checker != null)
         {
             if (FindObjectOfType<DialogManager>().checker.GetComponent<SelectDialog>().inDialog == false)
@@ -276,6 +280,39 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+    }
+
+    public int checkpointNumber = 0;
+    public float posX;
+    public float posY;
+    public float posZ;
+
+    private void CheckpointStart()
+    {
+        checkpointNumber = PlayerPrefs.GetInt("checkpointNumber");
+        posX = PlayerPrefs.GetFloat("posX");
+        posY = PlayerPrefs.GetFloat("posY");
+        posZ = PlayerPrefs.GetFloat("posZ");
+        souls = PlayerPrefs.GetInt("souls");
+        FindObjectOfType<WatchPlayer>().rightLimit = PlayerPrefs.GetFloat("rightLimit");
+
+        if (checkpointNumber == 0)
+        {
+            transform.position = new Vector3(-5.71f*2, -0.77f*2, 0f);
+
+        }
+        else
+        {
+            transform.position = new Vector3(posX + 0.5f, posY, 0f);
+        }
+    }
+
+    private void DeleteAllPrefs()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
