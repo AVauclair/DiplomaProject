@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public bool ground;
     public bool topDetector;
 
+    public int levelNumber = 0;
+
     public int souls = 0;
 
     float dirX;
@@ -294,6 +296,7 @@ public class PlayerController : MonoBehaviour
         posY = PlayerPrefs.GetFloat("posY");
         posZ = PlayerPrefs.GetFloat("posZ");
         souls = PlayerPrefs.GetInt("souls");
+        levelNumber = PlayerPrefs.GetInt("levelNumber");
         FindObjectOfType<WatchPlayer>().rightLimit = PlayerPrefs.GetFloat("rightLimit");
 
         if (checkpointNumber == 0)
@@ -317,9 +320,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Respawn")
+        if (other.tag == "TheDarkness")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(levelNumber);
         }
     }
 }

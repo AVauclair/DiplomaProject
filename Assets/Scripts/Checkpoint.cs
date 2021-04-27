@@ -25,6 +25,7 @@ public class Checkpoint : MonoBehaviour
 
             PlayerPrefs.SetInt("souls", FindObjectOfType<PlayerController>().souls);
             PlayerPrefs.SetInt("checkpointNumber", FindObjectOfType<PlayerController>().checkpointNumber);
+            PlayerPrefs.SetInt("levelNumber", FindObjectOfType<PlayerController>().levelNumber);
             PlayerPrefs.Save();
 
             Destroy(gameObject);

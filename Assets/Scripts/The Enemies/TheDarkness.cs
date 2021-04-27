@@ -13,6 +13,8 @@ public class TheDarkness : MonoBehaviour
     public Transform point;
     bool moveRight = true;
 
+    public LineRenderer lineRenderer;
+
     //------------------ переменные ниже нужны для того, чтобы манипулировать состояниями противника можно было разными условиями
     public bool chill = true;
     public bool angry = false;

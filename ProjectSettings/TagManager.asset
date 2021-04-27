@@ -8,6 +8,7 @@ TagManager:
   - Soul
   - DialogManager
   - Checkpoint
+  - TheDarkness
   layers:
   - Default
   - TransparentFX
