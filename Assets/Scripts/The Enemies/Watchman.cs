@@ -7,7 +7,6 @@ public class Watchman : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator anim;
-    SpriteRenderer sr;
     Transform tr;
 
     public float speed = 1;
@@ -26,11 +25,11 @@ public class Watchman : MonoBehaviour
     public float enemyTriggerDistance;
 
     private PlayerController pcScript;
-    private GameObject PlayerObject;
+    private Rigidbody2D playerRB;
+    private Transform playerTR;
 
     private void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
@@ -38,6 +37,8 @@ public class Watchman : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         pcScript = player.GetComponent<PlayerController>();
+        playerRB = player.GetComponent<Rigidbody2D>();
+        playerTR = player.GetComponent<Transform>();
     }
 
     private void Update()
@@ -96,24 +97,26 @@ public class Watchman : MonoBehaviour
         anim.SetBool("doAttack", true);
         anim.SetBool("isWalking", false);
 
+
+        RaycastHit2D hit = Physics2D.Raycast(playerRB.position + Vector2.up * 2, playerTR.TransformDirection(Vector2.up));
+        lineRenderer.SetPosition(0, playerTR.position);
+        lineRenderer.SetPosition(1, hit.point);
+
+        if (hit)
+        {
+            Debug.Log(hit.transform.name);
+
+            lineRenderer.SetPosition(0, playerTR.position);
+            lineRenderer.SetPosition(1, hit.point);
+        }
+        else
+        {
+            lineRenderer.SetPosition(0, playerTR.position);
+            lineRenderer.SetPosition(1, playerTR.position + playerTR.right * 100);
+        }
+
         if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance / 2)
         {
-            //RaycastHit2D hit = Physics2D.Raycast(rb.position, tr.right);
-            //lineRenderer.SetPosition(0, transform.position);
-            //lineRenderer.SetPosition(1, hit.point);
-
-            //if (hit)
-            //{
-            //    Debug.Log(hit.transform.name);
-
-            //    lineRenderer.SetPosition(0, transform.position);
-            //    lineRenderer.SetPosition(1, hit.point);
-            //}
-            //else
-            //{
-            //    lineRenderer.SetPosition(0, transform.position - new Vector3(0f, 0.05f, 0f));
-            //    lineRenderer.SetPosition(1, transform.position + transform.right * 100);
-            //}
             SceneManager.LoadScene(FindObjectOfType<PlayerController>().levelNumber);
         }
         StartCoroutine(StealthFailed());

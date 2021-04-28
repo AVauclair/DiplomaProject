@@ -11,7 +11,7 @@ public class Checkpoint : MonoBehaviour
         if (FindObjectOfType<PlayerController>().checkpointNumber == 0)
         {
             tilemapDoor.SetActive(true);
-            PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit *= 5);
+            PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit *= 10);
         }
 
         FindObjectOfType<PlayerController>().checkpointNumber++;
