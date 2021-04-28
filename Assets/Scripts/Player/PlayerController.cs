@@ -297,7 +297,6 @@ public class PlayerController : MonoBehaviour
         posZ = PlayerPrefs.GetFloat("posZ");
         souls = PlayerPrefs.GetInt("souls");
         levelNumber = PlayerPrefs.GetInt("levelNumber");
-        FindObjectOfType<WatchPlayer>().rightLimit = PlayerPrefs.GetFloat("rightLimit");
 
         if (checkpointNumber == 0)
         {
@@ -307,6 +306,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             transform.position = new Vector3(posX + 0.5f, posY, 0f);
+            FindObjectOfType<WatchPlayer>().leftLimit = PlayerPrefs.GetFloat("leftLimit");
+            FindObjectOfType<WatchPlayer>().rightLimit = PlayerPrefs.GetFloat("rightLimit");
+            FindObjectOfType<WatchPlayer>().downLimit = PlayerPrefs.GetFloat("downLimit");
+            FindObjectOfType<WatchPlayer>().upLimit = PlayerPrefs.GetFloat("upLimit");
+            FindObjectOfType<WatchPlayer>().offset.x = PlayerPrefs.GetFloat("offsetX");
+            FindObjectOfType<WatchPlayer>().offset.y = PlayerPrefs.GetFloat("offsetY");
+            FindObjectOfType<WatchPlayer>().dumping = PlayerPrefs.GetFloat("dumping");
         }
     }
 
