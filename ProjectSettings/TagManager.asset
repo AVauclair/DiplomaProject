@@ -11,6 +11,9 @@ TagManager:
   - TheDarkness
   - SecretRoom
   - death
+  - firstPortal
+  - secondPortal
+  - Enemy
   layers:
   - Default
   - TransparentFX

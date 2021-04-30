@@ -32,6 +32,8 @@ public class CheckpointStartValues : MonoBehaviour
         posZ = PlayerPrefs.GetFloat("posZ");
         FindObjectOfType<PlayerController>().souls = PlayerPrefs.GetInt("souls");
         FindObjectOfType<PlayerController>().levelNumber = PlayerPrefs.GetInt("levelNumber");
+        FindObjectOfType<ConditionScript>().sceneNumber = PlayerPrefs.GetInt("sceneNumber");
+
 
         if (checkpointNumber == 0)
         {

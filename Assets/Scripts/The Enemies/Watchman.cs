@@ -98,22 +98,22 @@ public class Watchman : MonoBehaviour
         anim.SetBool("isWalking", false);
 
 
-        RaycastHit2D hit = Physics2D.Raycast(playerRB.position + Vector2.up * 2, playerTR.TransformDirection(Vector2.up));
-        lineRenderer.SetPosition(0, playerTR.position);
-        lineRenderer.SetPosition(1, hit.point);
+        //RaycastHit2D hit = Physics2D.Raycast(playerRB.position * 2, playerTR.TransformDirection(Vector2.right));
+        //lineRenderer.SetPosition(0, playerTR.position);
+        //lineRenderer.SetPosition(1, hit.point);
 
-        if (hit)
-        {
-            Debug.Log(hit.transform.name);
+        //if (hit)
+        //{
+        //    Debug.Log(hit.transform.name);
 
-            lineRenderer.SetPosition(0, playerTR.position);
-            lineRenderer.SetPosition(1, hit.point);
-        }
-        else
-        {
-            lineRenderer.SetPosition(0, playerTR.position);
-            lineRenderer.SetPosition(1, playerTR.position + playerTR.right * 100);
-        }
+        //    lineRenderer.SetPosition(0, playerTR.position);
+        //    lineRenderer.SetPosition(1, hit.point);
+        //}
+        //else
+        //{
+        //    lineRenderer.SetPosition(0, playerTR.position);
+        //    lineRenderer.SetPosition(1, playerTR.position + playerTR.right * 100);
+        //}
 
         if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance / 2)
         {

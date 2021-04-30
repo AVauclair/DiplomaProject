@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
         FindObjectOfType<CheckpointStartValues>().CheckpointCheck();
         FindObjectOfType<CheckpointStartValues>().CheckpointStart();
+        FindObjectOfType<ConditionScript>().ConditionsChecker();
     }
 
     //Input.GetAxis для оси Х. Возвращает значение оси в пределах от -1 до 1.
