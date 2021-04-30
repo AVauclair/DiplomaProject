@@ -9,6 +9,8 @@ TagManager:
   - DialogManager
   - Checkpoint
   - TheDarkness
+  - SecretRoom
+  - death
   layers:
   - Default
   - TransparentFX

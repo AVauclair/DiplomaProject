@@ -8,12 +8,12 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (FindObjectOfType<PlayerController>().checkpointNumber == 0)
+        if (FindObjectOfType<CheckpointStartValues>().checkpointNumber == 0)
         {
             tilemapDoor.SetActive(true);
 
             PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -6.27f);
-            PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = 11.5f);
+            PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = 25.1f);
             PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -27.2f);
             PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 0.1f);
             PlayerPrefs.SetFloat("offsetX", FindObjectOfType<WatchPlayer>().offset.x = 1.15f);
@@ -21,7 +21,7 @@ public class Checkpoint : MonoBehaviour
             PlayerPrefs.SetFloat("dumping", FindObjectOfType<WatchPlayer>().dumping = 2f);
         }
 
-        FindObjectOfType<PlayerController>().checkpointNumber++;
+        FindObjectOfType<CheckpointStartValues>().checkpointNumber++;
 
 
         if (collision.tag == "Player")
@@ -31,7 +31,7 @@ public class Checkpoint : MonoBehaviour
             PlayerPrefs.SetFloat("posZ", FindObjectOfType<PlayerController>().transform.position.z);
 
             PlayerPrefs.SetInt("souls", FindObjectOfType<PlayerController>().souls);
-            PlayerPrefs.SetInt("checkpointNumber", FindObjectOfType<PlayerController>().checkpointNumber);
+            PlayerPrefs.SetInt("checkpointNumber", FindObjectOfType<CheckpointStartValues>().checkpointNumber);
             PlayerPrefs.SetInt("levelNumber", FindObjectOfType<PlayerController>().levelNumber);
             PlayerPrefs.Save();
 

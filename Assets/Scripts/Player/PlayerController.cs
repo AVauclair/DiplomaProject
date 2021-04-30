@@ -36,7 +36,8 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         tr = GetComponent<Transform>();
 
-        CheckpointStart();
+        FindObjectOfType<CheckpointStartValues>().CheckpointCheck();
+        FindObjectOfType<CheckpointStartValues>().CheckpointStart();
     }
 
     //Input.GetAxis для оси Х. Возвращает значение оси в пределах от -1 до 1.
@@ -284,38 +285,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public int checkpointNumber = 0;
-    public float posX;
-    public float posY;
-    public float posZ;
-
-    private void CheckpointStart()
-    {
-        checkpointNumber = PlayerPrefs.GetInt("checkpointNumber");
-        posX = PlayerPrefs.GetFloat("posX");
-        posY = PlayerPrefs.GetFloat("posY");
-        posZ = PlayerPrefs.GetFloat("posZ");
-        souls = PlayerPrefs.GetInt("souls");
-        levelNumber = PlayerPrefs.GetInt("levelNumber");
-
-        if (checkpointNumber == 0)
-        {
-            transform.position = new Vector3(-5.71f*2, -0.77f*2, 0f);
-
-        }
-        else
-        {
-            transform.position = new Vector3(posX + 0.5f, posY, 0f);
-            FindObjectOfType<WatchPlayer>().leftLimit = PlayerPrefs.GetFloat("leftLimit");
-            FindObjectOfType<WatchPlayer>().rightLimit = PlayerPrefs.GetFloat("rightLimit");
-            FindObjectOfType<WatchPlayer>().downLimit = PlayerPrefs.GetFloat("downLimit");
-            FindObjectOfType<WatchPlayer>().upLimit = PlayerPrefs.GetFloat("upLimit");
-            FindObjectOfType<WatchPlayer>().offset.x = PlayerPrefs.GetFloat("offsetX");
-            FindObjectOfType<WatchPlayer>().offset.y = PlayerPrefs.GetFloat("offsetY");
-            FindObjectOfType<WatchPlayer>().dumping = PlayerPrefs.GetFloat("dumping");
-        }
-    }
-
     private void DeleteAllPrefs()
     {
         if (Input.GetKeyDown(KeyCode.L))
@@ -327,6 +296,17 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "TheDarkness")
+        {
+            SceneManager.LoadScene(levelNumber);
+        }
+
+        if (other.tag == "SecretRoom" && levelNumber == 0)
+        {
+            Destroy(other.gameObject);
+            FindObjectOfType<WatchPlayer>().rightLimit = 31.4f;
+        }
+
+        if (other.tag == "death")
         {
             SceneManager.LoadScene(levelNumber);
         }
