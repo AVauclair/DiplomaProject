@@ -5,7 +5,6 @@ using TMPro;
 
 public class Souls : MonoBehaviour
 {
-    public int souls = 0;
 
     public TextMeshProUGUI textSouls;
 
@@ -27,8 +26,8 @@ public class Souls : MonoBehaviour
             audioSource.PlayOneShot(audioClip);
             collision.transform.tag = "Untagged";
             Destroy(collision.gameObject);
-            souls++;
-            textSouls.text = (souls + 1).ToString();
+            FindObjectOfType<PlayerController>().souls++;
+            textSouls.text = (FindObjectOfType<PlayerController>().souls + 1).ToString();
         }
     }
 

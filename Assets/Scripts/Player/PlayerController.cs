@@ -119,16 +119,17 @@ public class PlayerController : MonoBehaviour
     }
 
     public float jumpForce = 2.8f;
-    private int jumpCount = 0;
+    public int jumpCount = 0;
     public int maxJumpValue = 1;
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isCrawling && (ground || (++jumpCount < maxJumpValue)))
+        if (Input.GetKeyDown(KeyCode.Space) && !isCrawling && (ground || (jumpCount < maxJumpValue)))
         {
-            if (jumpCount > 0)
-            {
-                rb.velocity = new Vector2(dirX, 0);
-            }
+            //if (jumpCount > 0)
+            //{
+            //    rb.velocity = new Vector2(dirX, 0);
+            //}
+            jumpCount++;
             afterJump = true;
 
             anim.SetBool("isRun", false);
@@ -136,10 +137,18 @@ public class PlayerController : MonoBehaviour
             //rb.velocity = new Vector2(rb.velocity.x, jumpForce); //один из методов установки прыжка
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse); //один из методов установки
 
-            if (ground == true)
-            {
-                jumpCount = 0;
-            }
+
+            StartCoroutine(ZeroizeJumpCount());
+        }
+    }
+
+    IEnumerator ZeroizeJumpCount()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (ground == true)
+        {
+            jumpCount = 0;
         }
     }
 
@@ -311,5 +320,22 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(levelNumber);
         }
+
+        IEnumerator PillReturn()
+        {
+            yield return new WaitForSeconds(2f);
+
+            other.gameObject.SetActive(true);
+        }
+
+        if (other.tag == "Pill")
+        {
+            other.gameObject.SetActive(false);
+            jumpCount = 0;
+
+            StartCoroutine(PillReturn());
+        }
     }
+
+    
 }

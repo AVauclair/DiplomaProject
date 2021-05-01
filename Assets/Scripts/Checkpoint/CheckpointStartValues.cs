@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CheckpointStartValues : MonoBehaviour
@@ -10,6 +11,7 @@ public class CheckpointStartValues : MonoBehaviour
     public float posZ;
 
     public GameObject[] checkpoints;
+    public TextMeshProUGUI textSouls;
 
     public void CheckpointCheck()
     {
@@ -33,6 +35,8 @@ public class CheckpointStartValues : MonoBehaviour
         FindObjectOfType<PlayerController>().souls = PlayerPrefs.GetInt("souls");
         FindObjectOfType<PlayerController>().levelNumber = PlayerPrefs.GetInt("levelNumber");
         FindObjectOfType<ConditionScript>().sceneNumber = PlayerPrefs.GetInt("sceneNumber");
+
+        textSouls.text = (FindObjectOfType<PlayerController>().souls + 1).ToString();
 
 
         if (checkpointNumber == 0)

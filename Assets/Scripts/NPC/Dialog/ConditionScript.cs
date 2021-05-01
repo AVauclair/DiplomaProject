@@ -13,6 +13,7 @@ public class ConditionScript : MonoBehaviour
     public GameObject makingNoise;
     public GameObject getFree;
     public GameObject dialogBeforePortal;
+    public GameObject dialogBeforePills;
 
     [Header("Cutscenes")]
     public PlayableDirector takeGuardian;
@@ -38,6 +39,11 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 4)
         {
             dialogBeforePortal.SetActive(false);
+            dialogBeforePills.SetActive(true);
+        }
+        if (sceneNumber == 5)
+        {
+            dialogBeforePills.SetActive(false);
         }
     }
 }
