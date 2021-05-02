@@ -7,6 +7,7 @@ using UnityEngine.Playables;
 public class ConditionScript : MonoBehaviour
 {
     public int sceneNumber = 0;
+    public GameObject firstCutscene;
 
     [Header("ScenesObjects")]
     public GameObject dialogInPrison;
@@ -14,12 +15,17 @@ public class ConditionScript : MonoBehaviour
     public GameObject getFree;
     public GameObject dialogBeforePortal;
     public GameObject dialogBeforePills;
+    public GameObject dialogBeforeWood;
 
     [Header("Cutscenes")]
     public PlayableDirector takeGuardian;
 
     public void ConditionsChecker()
     {
+        if (sceneNumber > 0)
+        {
+            Destroy(firstCutscene);
+        }
         if (sceneNumber == 1)
         {
             makingNoise.SetActive(true);
@@ -44,6 +50,11 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 5)
         {
             dialogBeforePills.SetActive(false);
+            dialogBeforeWood.SetActive(true);
+        }
+        if (sceneNumber == 6)
+        {
+            dialogBeforeWood.SetActive(false);
         }
     }
 }

@@ -95,8 +95,11 @@ public class DialogManager : MonoBehaviour
         {
             if (checker.GetComponent<SelectDialog>().repeat == 0)
             {
-                FindObjectOfType<ConditionScript>().sceneNumber++;
-                FindObjectOfType<ConditionScript>().ConditionsChecker();
+                if (checker.GetComponent<SelectDialog>().willIncreaseSceneNumber == true)
+                {
+                    FindObjectOfType<ConditionScript>().sceneNumber++;
+                    FindObjectOfType<ConditionScript>().ConditionsChecker();
+                }
 
                 checker.GetComponent<SelectDialog>().repeat++;
             }
@@ -106,8 +109,11 @@ public class DialogManager : MonoBehaviour
         {
             if (checker.GetComponent<SelectDialog>().repeat == 0)
             {
-                FindObjectOfType<ConditionScript>().sceneNumber++;
-                FindObjectOfType<ConditionScript>().ConditionsChecker();
+                if (checker.GetComponent<SelectDialog>().willIncreaseSceneNumber == true)
+                {
+                    FindObjectOfType<ConditionScript>().sceneNumber++;
+                    FindObjectOfType<ConditionScript>().ConditionsChecker();
+                }
 
                 checker.GetComponent<SelectDialog>().repeat++;
             }
