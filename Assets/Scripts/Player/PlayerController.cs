@@ -134,8 +134,8 @@ public class PlayerController : MonoBehaviour
 
             anim.SetBool("isRun", false);
             anim.SetBool("isJump", true);
-            //rb.velocity = new Vector2(rb.velocity.x, jumpForce); //один из методов установки прыжка
-            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse); //один из методов установки
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); //один из методов установки прыжка
+            //rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse); //один из методов установки
 
 
             StartCoroutine(ZeroizeJumpCount());
@@ -336,6 +336,4 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(PillReturn());
         }
     }
-
-    
 }

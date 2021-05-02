@@ -12,7 +12,7 @@ public class Checkpoint : MonoBehaviour
         {
             tilemapDoor.SetActive(true);
 
-            PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -6.27f);
+            PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -21.72f);
             PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = 25.1f);
             PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -27.2f);
             PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 0.1f);
@@ -29,6 +29,7 @@ public class Checkpoint : MonoBehaviour
             PlayerPrefs.SetFloat("posX", FindObjectOfType<PlayerController>().transform.position.x);
             PlayerPrefs.SetFloat("posY", FindObjectOfType<PlayerController>().transform.position.y);
             PlayerPrefs.SetFloat("posZ", FindObjectOfType<PlayerController>().transform.position.z);
+            PlayerPrefs.SetFloat("localPos", FindObjectOfType<PlayerController>().transform.localScale.x);
 
             PlayerPrefs.SetInt("souls", FindObjectOfType<PlayerController>().souls);
             PlayerPrefs.SetInt("checkpointNumber", FindObjectOfType<CheckpointStartValues>().checkpointNumber);

@@ -9,6 +9,7 @@ public class CheckpointStartValues : MonoBehaviour
     public float posX;
     public float posY;
     public float posZ;
+    public float localPos;
 
     public GameObject[] checkpoints;
     public TextMeshProUGUI textSouls;
@@ -32,6 +33,7 @@ public class CheckpointStartValues : MonoBehaviour
         posX = PlayerPrefs.GetFloat("posX");
         posY = PlayerPrefs.GetFloat("posY");
         posZ = PlayerPrefs.GetFloat("posZ");
+        localPos = PlayerPrefs.GetFloat("localPos");
         FindObjectOfType<PlayerController>().souls = PlayerPrefs.GetInt("souls");
         FindObjectOfType<PlayerController>().levelNumber = PlayerPrefs.GetInt("levelNumber");
         FindObjectOfType<ConditionScript>().sceneNumber = PlayerPrefs.GetInt("sceneNumber");

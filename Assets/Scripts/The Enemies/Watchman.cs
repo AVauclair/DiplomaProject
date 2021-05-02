@@ -10,7 +10,7 @@ public class Watchman : MonoBehaviour
     Transform tr;
 
     public float speed = 1;
-    public int patrolRoute; //маршрут патрулирования
+    public float patrolRoute; //маршрут патрулирования
     public Transform point;
     bool moveRight = true;
 
@@ -56,7 +56,7 @@ public class Watchman : MonoBehaviour
             angry = false;
         }
 
-        if (willPatroul == true)
+        if (willPatroul == true && angry == false)
         {
             if (chill == true)
             {
