@@ -15,6 +15,7 @@ TagManager:
   - secondPortal
   - Enemy
   - Pill
+  - Box
   layers:
   - Default
   - TransparentFX

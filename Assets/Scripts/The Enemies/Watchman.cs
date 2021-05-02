@@ -19,6 +19,7 @@ public class Watchman : MonoBehaviour
     //------------------ переменные ниже нужны для того, чтобы манипулировать состояниями противника можно было разными условиями
     public bool chill = true;
     public bool angry = false;
+    public bool willPatroul = false;
     //------------------
 
     Transform player;
@@ -55,10 +56,20 @@ public class Watchman : MonoBehaviour
             angry = false;
         }
 
-        if (chill == true)
+        if (willPatroul == true)
         {
-            Chill();
+            if (chill == true)
+            {
+                Chill();
+            }
         }
+        else if (willPatroul == false && angry == false)
+        {
+            StopAllCoroutines();
+            anim.SetBool("doAttack", false);
+            anim.SetBool("isWalking", false);
+        }
+
         else if (angry == true)
         {
             Angry();
@@ -127,5 +138,13 @@ public class Watchman : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         SceneManager.LoadScene(FindObjectOfType<PlayerController>().levelNumber);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "death")
+        {
+            Destroy(gameObject);
+        }
     }
 }
