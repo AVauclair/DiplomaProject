@@ -10,6 +10,7 @@ public class CheckpointStartValues : MonoBehaviour
     public float posY;
     public float posZ;
     public float localPos;
+    public int havingKey;
 
     public GameObject[] checkpoints;
     public TextMeshProUGUI textSouls;
@@ -26,6 +27,10 @@ public class CheckpointStartValues : MonoBehaviour
         {
             checkpoints[1].SetActive(false);
         }
+        if (checkpointNumber == 3)
+        {
+            checkpoints[2].SetActive(false);
+        }
     }
 
     public void CheckpointStart()
@@ -36,7 +41,9 @@ public class CheckpointStartValues : MonoBehaviour
         localPos = PlayerPrefs.GetFloat("localPos");
         FindObjectOfType<PlayerController>().souls = PlayerPrefs.GetInt("souls");
         FindObjectOfType<PlayerController>().levelNumber = PlayerPrefs.GetInt("levelNumber");
+        FindObjectOfType<PlayerController>().havingKey = PlayerPrefs.GetInt("havingKey");
         FindObjectOfType<ConditionScript>().sceneNumber = PlayerPrefs.GetInt("sceneNumber");
+
 
         textSouls.text = (FindObjectOfType<PlayerController>().souls + 1).ToString();
 
@@ -56,6 +63,11 @@ public class CheckpointStartValues : MonoBehaviour
             FindObjectOfType<WatchPlayer>().offset.x = PlayerPrefs.GetFloat("offsetX");
             FindObjectOfType<WatchPlayer>().offset.y = PlayerPrefs.GetFloat("offsetY");
             FindObjectOfType<WatchPlayer>().dumping = PlayerPrefs.GetFloat("dumping");
+        }
+
+        if (FindObjectOfType<PlayerController>().havingKey == 1)
+        {
+            FindObjectOfType<ConditionScript>().imageSlot1.sprite = FindObjectOfType<ConditionScript>().keySprite;
         }
     }
 }

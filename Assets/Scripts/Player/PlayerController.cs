@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     public int souls = 0;
 
+    public int havingKey = 0;
+
     float dirX;
     public float speedUp = 1f;
 

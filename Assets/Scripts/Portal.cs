@@ -5,6 +5,7 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     public GameObject alterPortal;
+    public GameObject player;
 
     private bool inTrigger = false;
 
@@ -24,7 +25,7 @@ public class Portal : MonoBehaviour
         {
             if (inTrigger == true)
             {
-                transform.position = new Vector2(alterPortal.transform.position.x, alterPortal.transform.position.y);
+                player.transform.position = new Vector2(alterPortal.transform.position.x, alterPortal.transform.position.y);
             }
         }
     }

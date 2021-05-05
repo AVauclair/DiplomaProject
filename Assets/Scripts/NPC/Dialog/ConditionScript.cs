@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class ConditionScript : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class ConditionScript : MonoBehaviour
     public GameObject tilemapDoor1;
     public GameObject tilemapDoor2;
     public GameObject prisoner;
+
+    [Header("Equipment")]
+    public Image imageSlot1;
+    public Sprite keySprite;
 
     [Header("ScenesObjects")]
     public GameObject dialogInPrison;
@@ -39,12 +44,16 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 2)
         {
             takeGuardian.Play();
+
             makingNoise.SetActive(false);
             dialogInPrison.SetActive(false);
             getFree.SetActive(true);
         }
         if (sceneNumber == 3)
         {
+            imageSlot1.sprite = keySprite;
+            FindObjectOfType<PlayerController>().havingKey = 1;
+
             getFree.SetActive(false);
             dialogBeforePortal.SetActive(true);
         }
@@ -65,7 +74,10 @@ public class ConditionScript : MonoBehaviour
         }
         if (sceneNumber == 7)
         {
+            imageSlot1.sprite = null;
+            FindObjectOfType<PlayerController>().havingKey = 0;
             tilemapDoor2.SetActive(false);
+
             dialogBeforeVox.SetActive(false);
             dialogWithVox.SetActive(true);
         }
@@ -73,6 +85,7 @@ public class ConditionScript : MonoBehaviour
         {
             Destroy(prisoner);
             tilemapDoor1.SetActive(false);
+
             dialogWithVox.SetActive(false);
             dialogBeforeEnd.SetActive(true);
         }
