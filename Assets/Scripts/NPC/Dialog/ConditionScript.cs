@@ -8,6 +8,9 @@ public class ConditionScript : MonoBehaviour
 {
     public int sceneNumber = 0;
     public GameObject firstCutscene;
+    public GameObject tilemapDoor1;
+    public GameObject tilemapDoor2;
+    public GameObject prisoner;
 
     [Header("ScenesObjects")]
     public GameObject dialogInPrison;
@@ -16,6 +19,9 @@ public class ConditionScript : MonoBehaviour
     public GameObject dialogBeforePortal;
     public GameObject dialogBeforePills;
     public GameObject dialogBeforeWood;
+    public GameObject dialogBeforeVox;
+    public GameObject dialogWithVox;
+    public GameObject dialogBeforeEnd;
 
     [Header("Cutscenes")]
     public PlayableDirector takeGuardian;
@@ -55,6 +61,24 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 6)
         {
             dialogBeforeWood.SetActive(false);
+            dialogBeforeVox.SetActive(true);
+        }
+        if (sceneNumber == 7)
+        {
+            tilemapDoor2.SetActive(false);
+            dialogBeforeVox.SetActive(false);
+            dialogWithVox.SetActive(true);
+        }
+        if (sceneNumber == 8)
+        {
+            Destroy(prisoner);
+            tilemapDoor1.SetActive(false);
+            dialogWithVox.SetActive(false);
+            dialogBeforeEnd.SetActive(true);
+        }
+        if (sceneNumber == 9)
+        {
+            dialogBeforeEnd.SetActive(false);
         }
     }
 }
