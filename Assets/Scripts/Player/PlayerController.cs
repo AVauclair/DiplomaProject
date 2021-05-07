@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public int souls = 0;
 
     public int havingKey = 0;
+    public int havingWarriorSoul = 0;
 
     float dirX;
     public float speedUp = 1f;
@@ -336,6 +337,22 @@ public class PlayerController : MonoBehaviour
             jumpCount = 0;
 
             StartCoroutine(PillReturn());
+        }
+
+        if (other.tag == "EndTrigger")
+        {
+            FindObjectOfType<ConditionScript>().EndingWin.Play();
+            Destroy(other);
+            Destroy(GameObject.Find("StealthTrigger"));
+            Destroy(GameObject.Find("EndTrigger"));
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "StealthTrigger" && isCrawling == false)
+        {
+            FindObjectOfType<ConditionScript>().EndingDeath.Play();
         }
     }
 }

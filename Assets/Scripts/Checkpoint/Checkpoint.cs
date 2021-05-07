@@ -47,6 +47,7 @@ public class Checkpoint : MonoBehaviour
             PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
 
             PlayerPrefs.SetInt("havingKey", FindObjectOfType<PlayerController>().havingKey);
+            PlayerPrefs.SetInt("havingWarriorSoul", FindObjectOfType<PlayerController>().havingWarriorSoul);
             PlayerPrefs.Save();
 
             Destroy(gameObject);

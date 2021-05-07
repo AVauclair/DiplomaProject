@@ -11,6 +11,7 @@ public class CheckpointStartValues : MonoBehaviour
     public float posZ;
     public float localPos;
     public int havingKey;
+    public int havingWarriorSoul;
 
     public GameObject[] checkpoints;
     public TextMeshProUGUI textSouls;
@@ -42,6 +43,7 @@ public class CheckpointStartValues : MonoBehaviour
         FindObjectOfType<PlayerController>().souls = PlayerPrefs.GetInt("souls");
         FindObjectOfType<PlayerController>().levelNumber = PlayerPrefs.GetInt("levelNumber");
         FindObjectOfType<PlayerController>().havingKey = PlayerPrefs.GetInt("havingKey");
+        FindObjectOfType<PlayerController>().havingWarriorSoul = PlayerPrefs.GetInt("havingWarriorSoul");
         FindObjectOfType<ConditionScript>().sceneNumber = PlayerPrefs.GetInt("sceneNumber");
 
 
@@ -68,6 +70,10 @@ public class CheckpointStartValues : MonoBehaviour
         if (FindObjectOfType<PlayerController>().havingKey == 1)
         {
             FindObjectOfType<ConditionScript>().imageSlot1.sprite = FindObjectOfType<ConditionScript>().keySprite;
+        }
+        if (FindObjectOfType<PlayerController>().havingWarriorSoul == 1)
+        {
+            FindObjectOfType<ConditionScript>().imageSlot1.sprite = FindObjectOfType<ConditionScript>().soulSprite;
         }
     }
 }

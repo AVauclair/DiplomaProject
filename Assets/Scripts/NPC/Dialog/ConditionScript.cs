@@ -16,6 +16,7 @@ public class ConditionScript : MonoBehaviour
     [Header("Equipment")]
     public Image imageSlot1;
     public Sprite keySprite;
+    public Sprite soulSprite;
 
     [Header("ScenesObjects")]
     public GameObject dialogInPrison;
@@ -27,9 +28,12 @@ public class ConditionScript : MonoBehaviour
     public GameObject dialogBeforeVox;
     public GameObject dialogWithVox;
     public GameObject dialogBeforeEnd;
+    public GameObject dialogEnd;
 
     [Header("Cutscenes")]
     public PlayableDirector takeGuardian;
+    public PlayableDirector EndingDeath;
+    public PlayableDirector EndingWin;
 
     public void ConditionsChecker()
     {
@@ -92,6 +96,13 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 9)
         {
             dialogBeforeEnd.SetActive(false);
+            dialogEnd.SetActive(true);
+        }
+        if (sceneNumber == 10)
+        {
+            imageSlot1.sprite = soulSprite;
+            FindObjectOfType<PlayerController>().havingWarriorSoul = 1;
+            dialogEnd.SetActive(false);
         }
     }
 }

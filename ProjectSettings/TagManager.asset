@@ -17,6 +17,8 @@ TagManager:
   - Pill
   - Box
   - Grab
+  - StealthTrigger
+  - EndTrigger
   layers:
   - Default
   - TransparentFX
