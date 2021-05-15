@@ -128,7 +128,7 @@ public class Watchman : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance / 2)
         {
-            SceneManager.LoadScene(FindObjectOfType<PlayerController>().levelNumber);
+            SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }
         StartCoroutine(StealthFailed());
     }
@@ -137,7 +137,7 @@ public class Watchman : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
 
-        SceneManager.LoadScene(FindObjectOfType<PlayerController>().levelNumber);
+        SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

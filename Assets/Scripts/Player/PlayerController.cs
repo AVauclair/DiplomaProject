@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     public bool ground;
     public bool topDetector;
 
-    public int levelNumber = 0;
-
     public int souls = 0;
 
     public int havingKey = 0;
@@ -91,6 +89,7 @@ public class PlayerController : MonoBehaviour
                 Jump();
                 Push();
                 ShowInterface();
+                OpenMenu();
                 if (rb.velocity.y == 0 && afterJump)
                 {
                     anim.SetBool("isJump", false);
@@ -113,6 +112,7 @@ public class PlayerController : MonoBehaviour
             Jump();
             Push();
             ShowInterface();
+            OpenMenu();
             if (rb.velocity.y == 0 && afterJump)
             {
                 anim.SetBool("isJump", false);
@@ -306,14 +306,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OpenMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "TheDarkness")
         {
-            SceneManager.LoadScene(levelNumber);
+            SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }
 
-        if (other.tag == "SecretRoom" && levelNumber == 0)
+        if (other.tag == "SecretRoom" && FindObjectOfType<LevelCount>().levelNumber == 0)
         {
             Destroy(other.gameObject);
             FindObjectOfType<WatchPlayer>().rightLimit = 31.4f;
@@ -321,7 +329,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.tag == "death")
         {
-            SceneManager.LoadScene(levelNumber);
+            SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }
 
         IEnumerator PillReturn()

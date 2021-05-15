@@ -14,8 +14,8 @@ public class Checkpoint : MonoBehaviour
             {
                 tilemapDoor.SetActive(true);
 
-                PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -21.74f);
-                PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = 25.1f);
+                PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -22f);
+                PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = 25.37f);
                 PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -27.2f);
                 PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 0.1f);
                 PlayerPrefs.SetFloat("offsetX", FindObjectOfType<WatchPlayer>().offset.x = 1.15f);
@@ -26,7 +26,7 @@ public class Checkpoint : MonoBehaviour
             if (FindObjectOfType<CheckpointStartValues>().checkpointNumber == 2)
             {
                 PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -36.88f);
-                PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = -26.45f);
+                PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = -26.19f);
                 PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -27.2f);
                 PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = -5.14f);
                 PlayerPrefs.SetFloat("offsetX", FindObjectOfType<WatchPlayer>().offset.x = 1.15f);
@@ -43,7 +43,7 @@ public class Checkpoint : MonoBehaviour
 
             PlayerPrefs.SetInt("souls", FindObjectOfType<PlayerController>().souls);
             PlayerPrefs.SetInt("checkpointNumber", FindObjectOfType<CheckpointStartValues>().checkpointNumber);
-            PlayerPrefs.SetInt("levelNumber", FindObjectOfType<PlayerController>().levelNumber);
+            PlayerPrefs.SetInt("levelNumber", FindObjectOfType<LevelCount>().levelNumber);
             PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
 
             PlayerPrefs.SetInt("havingKey", FindObjectOfType<PlayerController>().havingKey);

@@ -1233,7 +1233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground: 0
   topDetector: 0
-  levelNumber: 0
   souls: 0
   havingKey: 0
   havingWarriorSoul: 0
@@ -27087,7 +27086,7 @@ Transform:
   - {fileID: 1622662923}
   - {fileID: 944469545}
   m_Father: {fileID: 1316403451}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &281389912
 GameObject:
@@ -29643,7 +29642,7 @@ Transform:
   - {fileID: 1701506380}
   - {fileID: 274498415}
   m_Father: {fileID: 1316403451}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &528306244
 GameObject:
@@ -31291,7 +31290,7 @@ Transform:
   - {fileID: 497911823}
   - {fileID: 683713750}
   m_Father: {fileID: 1316403451}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &757734687
 GameObject:
@@ -31718,7 +31717,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1316403451}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &776932340
 AudioSource:
@@ -37514,6 +37513,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1217382302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1217382303}
+  - component: {fileID: 1217382304}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1217382303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217382302}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 492.26556, y: 264.08313, z: -501.5446}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1316403451}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1217382304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217382302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fae8b23f486044698109f2c7da681f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNumber: 1
 --- !u!1 &1229607616
 GameObject:
   m_ObjectHideFlags: 0
@@ -101427,7 +101470,7 @@ Transform:
   m_Children:
   - {fileID: 51644130}
   m_Father: {fileID: 1316403451}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1303586436
 GameObject:
@@ -101582,6 +101625,7 @@ Transform:
   m_Children:
   - {fileID: 2011203579}
   - {fileID: 2056233271}
+  - {fileID: 1217382303}
   - {fileID: 776932339}
   - {fileID: 527571788}
   - {fileID: 279711148}
@@ -103280,7 +103324,7 @@ MonoBehaviour:
   inTrigger: 0
   inDialog: 0
   willIncreaseSceneNumber: 1
-  playAutomatically: 0
+  playAutomatically: 1
   willRepeat: 0
   repeat: 0
   dialogNumber: 0
