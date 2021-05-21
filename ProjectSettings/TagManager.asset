@@ -19,6 +19,7 @@ TagManager:
   - Grab
   - StealthTrigger
   - EndTrigger
+  - NextLevelTrigger
   layers:
   - Default
   - TransparentFX

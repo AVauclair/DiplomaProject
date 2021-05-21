@@ -1233,6 +1233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground: 0
   topDetector: 0
+  maxHp: 100
+  hp: 0
   souls: 0
   havingKey: 0
   havingWarriorSoul: 0
@@ -1751,6 +1753,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &186383015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 186383016}
+  - component: {fileID: 186383017}
+  m_Layer: 0
+  m_Name: NextLevelTrigger
+  m_TagString: NextLevelTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &186383016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186383015}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -24.81, y: -3.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 944469545}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &186383017
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186383015}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.5076332, y: -0.13541341}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2624359, y: 0.38909674}
+  m_EdgeRadius: 0
 --- !u!1 &198478972
 GameObject:
   m_ObjectHideFlags: 0
@@ -35257,6 +35316,7 @@ Transform:
   - {fileID: 141626451}
   - {fileID: 2101593842}
   - {fileID: 431784717}
+  - {fileID: 186383016}
   m_Father: {fileID: 279711148}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36626,7 +36686,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21587181, y: -0.09025431}
+  m_Offset: {x: 0.97255325, y: -0.09025431}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -36637,7 +36697,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5911369, y: 0.18677902}
+  m_Size: {x: 0.07777405, y: 0.18677902}
   m_EdgeRadius: 0
 --- !u!1 &1120854393
 GameObject:
@@ -106033,6 +106093,8 @@ PlayableDirector:
     value: {fileID: 2131991174}
   - key: {fileID: -5082968720454873451, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
     value: {fileID: 162857201}
+  - key: {fileID: -7165743208678587854, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
+    value: {fileID: 1495297109}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1835162130
@@ -106857,9 +106919,17 @@ MonoBehaviour:
     portrait: {fileID: 21300006, guid: 0409f2fddf07780408257c186ab69681, type: 3}
     color: {r: 1, g: 1, b: 1, a: 1}
     sentences:
-    - "*\u0412\u044B \u0441\u043E\u0437\u0434\u0430\u0435\u0442\u0435 \u0441\u0443\u0435\u0442\u0443*"
-    - "*\u0412\u044B \u0441\u043E\u0437\u0434\u0430\u0435\u0442\u0435 \u0431\u043E\u043B\u044C\u0448\u0435
-      \u0441\u0443\u0435\u0442\u044B*"
+    - "*\u041F\u043E\u0434\u043E\u0439\u0434\u044F \u043A \u0447\u0435\u0440\u0435\u043F\u0430\u043C,
+      \u0432\u044B \u043D\u0430\u0447\u0438\u043D\u0430\u0435\u0442\u0435 \u0440\u0430\u0437\u0431\u0440\u0430\u0441\u044B\u0432\u0430\u0442\u044C
+      \u0438\u0445 \u043F\u043E \u043A\u0430\u043C\u0435\u0440\u0435, \u0442\u0435\u043C
+      \u0441\u0430\u043C\u044B\u043C \u0441\u043E\u0437\u0434\u0430\u0432\u0430\u044F
+      \u0448\u0443\u043C.*"
+    - "*\u041D\u0430 \u043F\u0440\u043E\u0442\u044F\u0436\u0435\u043D\u0438\u0438
+      \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u0438\u0445 \u043C\u0438\u043D\u0443\u0442
+      \u0432\u044B \u043D\u0435 \u043F\u0440\u0435\u043A\u0440\u0430\u0449\u0430\u0435\u0442\u0435
+      \u0448\u0443\u043C\u0435\u0442\u044C, \u043F\u043E\u043A\u0430 \u0432\u0434\u0440\u0443\u0433
+      \u043D\u0435 \u0443\u0441\u043B\u044B\u0448\u0430\u043B\u0438 \u0437\u0432\u043E\u043D
+      \u043A\u043B\u044E\u0447\u0435\u0439.*"
 --- !u!114 &1926473268
 MonoBehaviour:
   m_ObjectHideFlags: 0

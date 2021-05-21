@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public bool ground;
     public bool topDetector;
 
+    public int maxHp = 100;
+    public int hp;
+
     public int souls = 0;
 
     public int havingKey = 0;
@@ -40,6 +43,8 @@ public class PlayerController : MonoBehaviour
         FindObjectOfType<CheckpointStartValues>().CheckpointCheck();
         FindObjectOfType<CheckpointStartValues>().CheckpointStart();
         FindObjectOfType<ConditionScript>().ConditionsChecker();
+
+        hp = maxHp;
     }
 
     //Input.GetAxis для оси Х. Возвращает значение оси в пределах от -1 до 1.
@@ -321,7 +326,7 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }
 
-        if (other.tag == "SecretRoom" && FindObjectOfType<LevelCount>().levelNumber == 0)
+        if (other.tag == "SecretRoom" && FindObjectOfType<LevelCount>().levelNumber == 1)
         {
             Destroy(other.gameObject);
             FindObjectOfType<WatchPlayer>().rightLimit = 31.4f;
@@ -353,6 +358,19 @@ public class PlayerController : MonoBehaviour
             Destroy(other);
             Destroy(GameObject.Find("StealthTrigger"));
             Destroy(GameObject.Find("EndTrigger"));
+        }
+
+        if (other.tag == "NextLevelTrigger")
+        {
+            PlayerPrefs.SetFloat("posX", FindObjectOfType<PlayerController>().transform.position.x);
+            PlayerPrefs.SetFloat("posY", FindObjectOfType<PlayerController>().transform.position.y);
+            PlayerPrefs.SetFloat("posZ", FindObjectOfType<PlayerController>().transform.position.z);
+            FindObjectOfType<LevelCount>().levelNumber++;
+            FindObjectOfType<ConditionScript>().sceneNumber++;
+            PlayerPrefs.SetInt("levelNumber", FindObjectOfType<LevelCount>().levelNumber);
+            PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
+
+            SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }
     }
 

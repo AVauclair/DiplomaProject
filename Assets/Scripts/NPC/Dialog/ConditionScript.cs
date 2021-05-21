@@ -51,7 +51,6 @@ public class ConditionScript : MonoBehaviour
 
             makingNoise.SetActive(false);
             dialogInPrison.SetActive(false);
-            getFree.SetActive(true);
         }
         if (sceneNumber == 3)
         {
