@@ -25,7 +25,7 @@ public class Checkpoint : MonoBehaviour
 
             if (FindObjectOfType<CheckpointStartValues>().checkpointNumber == 2)
             {
-                PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -36.88f);
+                PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -37.18f);
                 PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = -26.19f);
                 PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -27.2f);
                 PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = -5.14f);

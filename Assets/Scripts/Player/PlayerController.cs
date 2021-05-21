@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool afterJump = false;
     public bool isFacingRight = true;
     public bool isWalking = false;
+    public bool highSpeed = false;
 
     public bool isDead = false;
      
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isRun", false);
                 anim.SetBool("isJump", false);
                 anim.SetBool("isCrawl", false);
+                anim.SetBool("HighSpeed", false);
                 anim.SetBool("ground", true);
             }
         }
@@ -107,6 +109,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isRun", false);
                 anim.SetBool("isJump", false);
                 anim.SetBool("isCrawl", false);
+                anim.SetBool("HighSpeed", false);
                 anim.SetBool("ground", true);
             }
         }
@@ -141,6 +144,8 @@ public class PlayerController : MonoBehaviour
             afterJump = true;
 
             anim.SetBool("isRun", false);
+            anim.SetBool("HighSpeed", false);
+            anim.SetBool("isCrawl", false);
             anim.SetBool("isJump", true);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); //один из методов установки прыжка
             //rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse); //один из методов установки
@@ -186,9 +191,27 @@ public class PlayerController : MonoBehaviour
 
     private void Run()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && ground && !isCrawling)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            rb.velocity = new Vector2(dirX * speedUp * 1.5f, rb.velocity.y);
+            if (ground && !isCrawling)
+            {
+                if (FindObjectOfType<LevelCount>().levelNumber > 1)
+                {
+                    anim.SetBool("HighSpeed", true);
+                    highSpeed = true;
+                }
+
+                rb.velocity = new Vector2(dirX * speedUp * 1.5f, rb.velocity.y);
+            }
+        }
+
+        else
+        {
+            if (FindObjectOfType<LevelCount>().levelNumber > 1)
+            {
+                anim.SetBool("HighSpeed", false);
+                highSpeed = false;
+            }
         }
     }
 
