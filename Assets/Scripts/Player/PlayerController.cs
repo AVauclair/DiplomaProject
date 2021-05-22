@@ -185,6 +185,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") == 0)
         {
             anim.SetBool("isRun", false);
+            anim.SetBool("HighSpeed", false);
             isWalking = false;
         }
     }
@@ -195,7 +196,7 @@ public class PlayerController : MonoBehaviour
         {
             if (ground && !isCrawling)
             {
-                if (FindObjectOfType<LevelCount>().levelNumber > 1)
+                if (FindObjectOfType<LevelCount>().levelNumber > 1 && isWalking == true)
                 {
                     anim.SetBool("HighSpeed", true);
                     highSpeed = true;
