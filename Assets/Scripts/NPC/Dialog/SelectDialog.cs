@@ -44,7 +44,7 @@ public class SelectDialog : MonoBehaviour
         DialogNextLine();
     }
 
-    private void DialogPicker()
+    public void DialogPicker()
     {
         if (inTrigger == true && Input.GetKeyDown(KeyCode.E) && inDialog == false && playAutomatically == false)
         {

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    public GameObject tilemapDoor;
+    public GameObject tilemapDoor1;
+    public GameObject tilemapDoor2;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,7 +13,7 @@ public class Checkpoint : MonoBehaviour
         {
             if (FindObjectOfType<CheckpointStartValues>().checkpointNumber == 0)
             {
-                tilemapDoor.SetActive(true);
+                tilemapDoor1.SetActive(true);
 
                 PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -22f);
                 PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = 25.37f);
@@ -25,6 +26,8 @@ public class Checkpoint : MonoBehaviour
 
             if (FindObjectOfType<CheckpointStartValues>().checkpointNumber == 2)
             {
+                tilemapDoor2.SetActive(true);
+
                 PlayerPrefs.SetFloat("leftLimit", FindObjectOfType<WatchPlayer>().leftLimit = -37.18f);
                 PlayerPrefs.SetFloat("rightLimit", FindObjectOfType<WatchPlayer>().rightLimit = -26.19f);
                 PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -27.2f);

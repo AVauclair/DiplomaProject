@@ -59,7 +59,10 @@ public class ConditionScript : MonoBehaviour
             FindObjectOfType<PlayerController>().havingKey = 1;
 
             getFree.SetActive(false);
-            tilemapDoor1.SetActive(false);
+            if (PlayerPrefs.GetInt("checkpointNumber") != 1)
+            {
+                tilemapDoor1.SetActive(false);
+            }
             dialogBeforePills.SetActive(true);
         }
         if (sceneNumber == 4)

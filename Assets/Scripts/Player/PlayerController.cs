@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public int maxHp = 100;
     public int hp;
 
+    public bool inTrigger = false;
+
     public int souls = 0;
 
     public int havingKey = 0;
@@ -70,7 +72,10 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isRun", false);
                 anim.SetBool("isJump", false);
                 anim.SetBool("isCrawl", false);
-                anim.SetBool("HighSpeed", false);
+                if (FindObjectOfType<LevelCount>().levelNumber > 1)
+                {
+                    anim.SetBool("HighSpeed", false);
+                }
                 anim.SetBool("ground", true);
             }
         }
@@ -109,7 +114,10 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isRun", false);
                 anim.SetBool("isJump", false);
                 anim.SetBool("isCrawl", false);
-                anim.SetBool("HighSpeed", false);
+                if (FindObjectOfType<LevelCount>().levelNumber > 1)
+                {
+                    anim.SetBool("HighSpeed", false);
+                }
                 anim.SetBool("ground", true);
             }
         }
@@ -144,7 +152,10 @@ public class PlayerController : MonoBehaviour
             afterJump = true;
 
             anim.SetBool("isRun", false);
-            anim.SetBool("HighSpeed", false);
+            if (FindObjectOfType<LevelCount>().levelNumber > 1)
+            {
+                anim.SetBool("HighSpeed", false);
+            }
             anim.SetBool("isCrawl", false);
             anim.SetBool("isJump", true);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); //один из методов установки прыжка
@@ -185,7 +196,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") == 0)
         {
             anim.SetBool("isRun", false);
-            anim.SetBool("HighSpeed", false);
+            if (FindObjectOfType<LevelCount>().levelNumber > 1)
+            {
+                anim.SetBool("HighSpeed", false);
+            }
             isWalking = false;
         }
     }
@@ -345,6 +359,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.tag != "ground")
+        {
+            inTrigger = true;
+        }
+
         if (other.tag == "TheDarkness")
         {
             SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
@@ -386,15 +405,55 @@ public class PlayerController : MonoBehaviour
 
         if (other.tag == "NextLevelTrigger")
         {
-            PlayerPrefs.SetFloat("posX", FindObjectOfType<PlayerController>().transform.position.x);
-            PlayerPrefs.SetFloat("posY", FindObjectOfType<PlayerController>().transform.position.y);
-            PlayerPrefs.SetFloat("posZ", FindObjectOfType<PlayerController>().transform.position.z);
+            PlayerPrefs.SetFloat("posX", transform.position.x);
+            PlayerPrefs.SetFloat("posY", transform.position.y);
+            PlayerPrefs.SetFloat("posZ", transform.position.z);
             FindObjectOfType<LevelCount>().levelNumber++;
             FindObjectOfType<ConditionScript>().sceneNumber++;
             PlayerPrefs.SetInt("levelNumber", FindObjectOfType<LevelCount>().levelNumber);
             PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
+            PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
 
+            if (FindObjectOfType<LevelCount>().levelNumber == 2)
+            {
+                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -8.92f);
+                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 0.1f);
+            }
             SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
+        }
+
+        if (other.tag == "Trader1")
+        {
+            if (FindObjectOfType<SelectDialog>().inTrigger == true && Input.GetKeyDown(KeyCode.E) && souls > 0)
+            {
+                FindObjectOfType<SelectDialog>().DialogPicker();
+                souls--;
+                maxHp += 20;
+                hp = maxHp;
+                FindObjectOfType<Souls>().textSouls.text = (souls - 1).ToString();
+            }
+        }
+
+        if (other.tag == "Trader2")
+        {
+            if (FindObjectOfType<SelectDialog>().inTrigger == true && Input.GetKeyDown(KeyCode.E) && havingWarriorSoul == 1)
+            {
+                FindObjectOfType<SelectDialog>().DialogPicker();
+                havingWarriorSoul = 0;
+                FindObjectOfType<ConditionScript>().imageSlot1.sprite = null;
+                pushImpulse = 1000;
+            }
+        }
+
+        if (other.tag == "Trader3")
+        {
+            if (FindObjectOfType<SelectDialog>().inTrigger == true && Input.GetKeyDown(KeyCode.E) && havingWarriorSoul == 1)
+            {
+                FindObjectOfType<SelectDialog>().DialogPicker();
+                havingWarriorSoul = 0;
+                FindObjectOfType<ConditionScript>().imageSlot1.sprite = null;
+                maxJumpValue = 2;
+            }
         }
     }
 
@@ -404,5 +463,10 @@ public class PlayerController : MonoBehaviour
         {
             FindObjectOfType<ConditionScript>().EndingDeath.Play();
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        inTrigger = false;
     }
 }

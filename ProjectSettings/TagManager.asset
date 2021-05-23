@@ -20,6 +20,9 @@ TagManager:
   - StealthTrigger
   - EndTrigger
   - NextLevelTrigger
+  - Trader1
+  - Trader2
+  - Trader3
   layers:
   - Default
   - TransparentFX
