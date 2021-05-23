@@ -1241,6 +1241,7 @@ MonoBehaviour:
   speedUp: 1
   isFacingRight: 1
   isWalking: 0
+  highSpeed: 0
   isDead: 0
   jumpForce: 3
   jumpCount: 0
@@ -103384,7 +103385,7 @@ MonoBehaviour:
   inTrigger: 0
   inDialog: 0
   willIncreaseSceneNumber: 1
-  playAutomatically: 1
+  playAutomatically: 0
   willRepeat: 0
   repeat: 0
   dialogNumber: 0
@@ -106083,8 +106084,6 @@ PlayableDirector:
     value: {fileID: 328924656}
   - key: {fileID: -238850774972557630, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
     value: {fileID: 328924656}
-  - key: {fileID: 3393794141181541313, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
-    value: {fileID: 897554045}
   - key: {fileID: 7817304367992873005, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
     value: {fileID: 328924659}
   - key: {fileID: 2625519333261369145, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
@@ -106093,8 +106092,6 @@ PlayableDirector:
     value: {fileID: 2131991174}
   - key: {fileID: -5082968720454873451, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
     value: {fileID: 162857201}
-  - key: {fileID: -7165743208678587854, guid: d4efb0ef46348364fbef328d853355a9, type: 2}
-    value: {fileID: 1495297109}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1835162130
@@ -113273,8 +113270,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneNumber: 0
   firstCutscene: {fileID: 70852789}
-  tilemapDoor1: {fileID: 103919323}
-  tilemapDoor2: {fileID: 1369738426}
+  tilemapDoor1: {fileID: 897554045}
+  tilemapDoor2: {fileID: 103919323}
+  tilemapDoor3: {fileID: 1369738426}
   prisoner: {fileID: 528306244}
   imageSlot1: {fileID: 2067032864}
   keySprite: {fileID: 21300000, guid: b7b7134a45e09bd4f8485cd173761df2, type: 3}
@@ -113282,7 +113280,6 @@ MonoBehaviour:
   dialogInPrison: {fileID: 1760342164}
   makingNoise: {fileID: 519547605}
   getFree: {fileID: 1495297109}
-  dialogBeforePortal: {fileID: 2117784069}
   dialogBeforePills: {fileID: 1162385715}
   dialogBeforeWood: {fileID: 2091342224}
   dialogBeforeVox: {fileID: 382934103}
@@ -113521,7 +113518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2117784070
 Transform:
   m_ObjectHideFlags: 0
@@ -113553,7 +113550,7 @@ MonoBehaviour:
   - {fileID: 281389912}
   inTrigger: 0
   inDialog: 0
-  willIncreaseSceneNumber: 1
+  willIncreaseSceneNumber: 0
   playAutomatically: 1
   willRepeat: 0
   repeat: 0

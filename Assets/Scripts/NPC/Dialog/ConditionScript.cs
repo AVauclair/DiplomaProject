@@ -11,6 +11,7 @@ public class ConditionScript : MonoBehaviour
     public GameObject firstCutscene;
     public GameObject tilemapDoor1;
     public GameObject tilemapDoor2;
+    public GameObject tilemapDoor3;
     public GameObject prisoner;
 
     [Header("Equipment")]
@@ -22,7 +23,6 @@ public class ConditionScript : MonoBehaviour
     public GameObject dialogInPrison;
     public GameObject makingNoise;
     public GameObject getFree;
-    public GameObject dialogBeforePortal;
     public GameObject dialogBeforePills;
     public GameObject dialogBeforeWood;
     public GameObject dialogBeforeVox;
@@ -51,6 +51,7 @@ public class ConditionScript : MonoBehaviour
 
             makingNoise.SetActive(false);
             dialogInPrison.SetActive(false);
+            getFree.SetActive(true);
         }
         if (sceneNumber == 3)
         {
@@ -58,50 +59,50 @@ public class ConditionScript : MonoBehaviour
             FindObjectOfType<PlayerController>().havingKey = 1;
 
             getFree.SetActive(false);
-            dialogBeforePortal.SetActive(true);
-        }
-        if (sceneNumber == 4)
-        {
-            dialogBeforePortal.SetActive(false);
+            tilemapDoor1.SetActive(false);
             dialogBeforePills.SetActive(true);
         }
-        if (sceneNumber == 5)
+        if (sceneNumber == 4)
         {
             dialogBeforePills.SetActive(false);
             dialogBeforeWood.SetActive(true);
         }
-        if (sceneNumber == 6)
+        if (sceneNumber == 5)
         {
             dialogBeforeWood.SetActive(false);
             dialogBeforeVox.SetActive(true);
         }
-        if (sceneNumber == 7)
+        if (sceneNumber == 6)
         {
             imageSlot1.sprite = null;
             FindObjectOfType<PlayerController>().havingKey = 0;
-            tilemapDoor2.SetActive(false);
+            tilemapDoor3.SetActive(false);
 
             dialogBeforeVox.SetActive(false);
             dialogWithVox.SetActive(true);
         }
-        if (sceneNumber == 8)
+        if (sceneNumber == 7)
         {
             Destroy(prisoner);
-            tilemapDoor1.SetActive(false);
+            tilemapDoor2.SetActive(false);
 
             dialogWithVox.SetActive(false);
             dialogBeforeEnd.SetActive(true);
         }
-        if (sceneNumber == 9)
+        if (sceneNumber == 8)
         {
             dialogBeforeEnd.SetActive(false);
             dialogEnd.SetActive(true);
         }
-        if (sceneNumber == 10)
+        if (sceneNumber == 9)
         {
             imageSlot1.sprite = soulSprite;
             FindObjectOfType<PlayerController>().havingWarriorSoul = 1;
             dialogEnd.SetActive(false);
+        }
+        if (sceneNumber == 10)
+        {
+
         }
     }
 }
