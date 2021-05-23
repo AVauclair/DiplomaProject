@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Threading;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,11 @@ public class PlayerController : MonoBehaviour
 
     private ScriptTrigger scriptTrigger;
 
+    public TextMeshProUGUI hpValue;
+
+    public GameObject dialogTrader2;
+    public GameObject dialogTrader3;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -48,6 +54,7 @@ public class PlayerController : MonoBehaviour
         FindObjectOfType<ConditionScript>().ConditionsChecker();
 
         hp = maxHp;
+        hpValue.text = hp.ToString();
     }
 
     //Input.GetAxis для оси Х. Возвращает значение оси в пределах от -1 до 1.
@@ -422,37 +429,39 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }
 
+
+
         if (other.tag == "Trader1")
         {
-            if (FindObjectOfType<SelectDialog>().inTrigger == true && Input.GetKeyDown(KeyCode.E) && souls > 0)
+            if (souls > 0)
             {
-                FindObjectOfType<SelectDialog>().DialogPicker();
                 souls--;
                 maxHp += 20;
                 hp = maxHp;
-                FindObjectOfType<Souls>().textSouls.text = (souls - 1).ToString();
+                FindObjectOfType<Souls>().textSouls.text = (souls + 1).ToString();
+                hpValue.text = hp.ToString();
             }
         }
 
         if (other.tag == "Trader2")
         {
-            if (FindObjectOfType<SelectDialog>().inTrigger == true && Input.GetKeyDown(KeyCode.E) && havingWarriorSoul == 1)
+            if (havingWarriorSoul == 1)
             {
-                FindObjectOfType<SelectDialog>().DialogPicker();
                 havingWarriorSoul = 0;
                 FindObjectOfType<ConditionScript>().imageSlot1.sprite = null;
                 pushImpulse = 1000;
+                Destroy(dialogTrader3);
             }
         }
 
         if (other.tag == "Trader3")
         {
-            if (FindObjectOfType<SelectDialog>().inTrigger == true && Input.GetKeyDown(KeyCode.E) && havingWarriorSoul == 1)
+            if (havingWarriorSoul == 1)
             {
-                FindObjectOfType<SelectDialog>().DialogPicker();
                 havingWarriorSoul = 0;
                 FindObjectOfType<ConditionScript>().imageSlot1.sprite = null;
                 maxJumpValue = 2;
+                Destroy(dialogTrader2);
             }
         }
     }

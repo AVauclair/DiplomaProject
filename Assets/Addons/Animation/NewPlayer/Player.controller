@@ -401,9 +401,6 @@ AnimatorStateTransition:
     m_ConditionEvent: isCrawl
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: isJump
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: isRun
     m_EventTreshold: 0
   - m_ConditionMode: 2
