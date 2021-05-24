@@ -9,6 +9,7 @@ public class GroundDetector : MonoBehaviour
         if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "Grab")
         {
             GetComponentInParent<PlayerController>().ground = true;
+            FindObjectOfType<PlayerController>().jumpCount = 0;
         }
     }
 

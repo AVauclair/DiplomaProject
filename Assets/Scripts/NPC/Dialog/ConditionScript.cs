@@ -44,6 +44,8 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 1)
         {
             makingNoise.SetActive(true);
+            PlayerPrefs.SetInt("maxHP", 100);
+            PlayerPrefs.SetInt("maxJumpValue", 1);
         }
         if (sceneNumber == 2)
         {

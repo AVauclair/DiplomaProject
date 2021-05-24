@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public bool ground;
     public bool topDetector;
 
-    public int maxHp = 100;
+    public int maxHP = 100;
     public int hp;
 
     public bool inTrigger = false;
@@ -53,14 +53,12 @@ public class PlayerController : MonoBehaviour
         FindObjectOfType<CheckpointStartValues>().CheckpointStart();
         FindObjectOfType<ConditionScript>().ConditionsChecker();
 
-        hp = maxHp;
-        hpValue.text = hp.ToString();
+        if (FindObjectOfType<LevelCount>().levelNumber > 1)
+        {
+            hp = maxHP;
+            hpValue.text = hp.ToString();
+        }
     }
-
-    //Input.GetAxis для оси Х. Возвращает значение оси в пределах от -1 до 1.
-    //при стандартных настройках проекта
-    //-1 возвращается при нажатии на клавиатуре стрелки влево (или клавиши А),
-    //1 возвращается при нажатии на клавиатуре стрелки вправо (или клавиши D).
 
     private void FixedUpdate()
     {
@@ -151,10 +149,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isCrawling && (ground || (jumpCount < maxJumpValue)))
         {
-            //if (jumpCount > 0)
-            //{
-            //    rb.velocity = new Vector2(dirX, 0);
-            //}
             jumpCount++;
             afterJump = true;
 
@@ -165,21 +159,7 @@ public class PlayerController : MonoBehaviour
             }
             anim.SetBool("isCrawl", false);
             anim.SetBool("isJump", true);
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); //один из методов установки прыжка
-            //rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse); //один из методов установки
-
-
-            StartCoroutine(ZeroizeJumpCount());
-        }
-    }
-
-    IEnumerator ZeroizeJumpCount()
-    {
-        yield return new WaitForSeconds(1f);
-
-        if (ground == true)
-        {
-            jumpCount = 0;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 
@@ -192,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
             if (Input.GetAxis("Horizontal") != 0 && ground)
             {
@@ -244,10 +224,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && !pushLock)
         {
             pushLock = true;
-            PushLock(); //Invoke("PushLock", 2f);
+            PushLock(); 
+            //Invoke("PushLock", 0.5f);
             if (!isFacingRight)
             {
-                rb.AddForce(Vector2.left * pushImpulse); //первый параметр - в каком направлении подтолкнуть, второй - с какой силой
+                rb.AddForce(Vector2.left * pushImpulse);
             }
             else
             {
@@ -265,8 +246,7 @@ public class PlayerController : MonoBehaviour
     {
         if ((dirX > 0 && !isFacingRight) || (dirX < 0 && isFacingRight))
         {
-            //transform.Rotate(0.0f, 180.0f, 0.0f); //один из методов поворота персонажа
-            transform.localScale *= new Vector2(-1, 1); //один из методов поворота персонажа
+            transform.localScale *= new Vector2(-1, 1);
             isFacingRight = !isFacingRight;
         }
     }
@@ -419,12 +399,25 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<ConditionScript>().sceneNumber++;
             PlayerPrefs.SetInt("levelNumber", FindObjectOfType<LevelCount>().levelNumber);
             PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
-            PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
-
+            
             if (FindObjectOfType<LevelCount>().levelNumber == 2)
             {
                 PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -8.92f);
                 PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 0.1f);
+
+                PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
+            }
+
+            if (FindObjectOfType<LevelCount>().levelNumber == 3)
+            {
+                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -10.1f);
+                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 0.1f);
+
+                PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
+                PlayerPrefs.SetInt("maxJumpValue", maxJumpValue);
+                PlayerPrefs.SetInt("pushImpulse", pushImpulse);
+                PlayerPrefs.SetInt("maxHP", maxHP);
+                PlayerPrefs.SetInt("souls", souls);
             }
             SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }
@@ -436,8 +429,8 @@ public class PlayerController : MonoBehaviour
             if (souls > 0)
             {
                 souls--;
-                maxHp += 20;
-                hp = maxHp;
+                maxHP += 20;
+                hp = maxHP;
                 FindObjectOfType<Souls>().textSouls.text = (souls + 1).ToString();
                 hpValue.text = hp.ToString();
             }
