@@ -37,6 +37,11 @@ public class Checkpoint : MonoBehaviour
                 PlayerPrefs.SetFloat("dumping", FindObjectOfType<WatchPlayer>().dumping = 2f);
             }
 
+            if (FindObjectOfType<CheckpointStartValues>().checkpointNumber == 3)
+            {
+                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 20f);
+            }
+
             FindObjectOfType<CheckpointStartValues>().checkpointNumber++;
 
             PlayerPrefs.SetFloat("posX", FindObjectOfType<PlayerController>().transform.position.x);

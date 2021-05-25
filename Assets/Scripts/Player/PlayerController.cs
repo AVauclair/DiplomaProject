@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        DeleteAllPrefs();
+        DevKit();
 
         if (FindObjectOfType<DialogManager>().checker != null)
         {
@@ -328,11 +328,39 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void DeleteAllPrefs()
+    public bool devJump = false;
+    public bool devPush = false;
+    private void DevKit()
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
             PlayerPrefs.DeleteAll();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            devJump = !devJump;
+            if (devJump == true)
+            {
+                maxJumpValue = 2;
+            }
+            else
+            {
+                maxJumpValue = 1;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            devPush = !devPush;
+            if (devPush == true)
+            {
+                pushImpulse = 1000;
+            }
+            else
+            {
+                pushImpulse = 0;
+            }
         }
     }
 
@@ -411,7 +439,7 @@ public class PlayerController : MonoBehaviour
             if (FindObjectOfType<LevelCount>().levelNumber == 3)
             {
                 PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -10.1f);
-                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 0.1f);
+                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 20f);
 
                 PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
                 PlayerPrefs.SetInt("maxJumpValue", maxJumpValue);

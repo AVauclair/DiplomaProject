@@ -19,19 +19,26 @@ public class CheckpointStartValues : MonoBehaviour
     public void CheckpointCheck()
     {
         checkpointNumber = PlayerPrefs.GetInt("checkpointNumber");
+        checkpoints[checkpointNumber - 1].SetActive(false);
 
-        if (checkpointNumber == 1)
-        {
-            checkpoints[0].SetActive(false);
-        }
-        else if (checkpointNumber == 2)
-        {
-            checkpoints[1].SetActive(false);
-        }
-        if (checkpointNumber == 3)
-        {
-            checkpoints[2].SetActive(false);
-        }
+        //if (checkpointNumber == 1)
+        //{
+        //    checkpoints[0].SetActive(false);
+        //}
+        //else if (checkpointNumber == 2)
+        //{
+        //    checkpoints[1].SetActive(false);
+        //}
+        //else if (checkpointNumber == 3)
+        //{
+        //    checkpoints[2].SetActive(false);
+        //}
+
+        //else if (checkpointNumber == 4)
+        //{
+        //    checkpoints[3].SetActive(false);
+        //}
+
     }
 
     public void CheckpointStart()

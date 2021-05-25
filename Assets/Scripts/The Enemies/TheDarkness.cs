@@ -13,8 +13,6 @@ public class TheDarkness : MonoBehaviour
     public Transform point;
     bool moveRight = true;
 
-    public LineRenderer lineRenderer;
-
     //------------------ переменные ниже нужны для того, чтобы манипулировать состояниями противника можно было разными условиями
     public bool chill = true;
     public bool angry = false;
@@ -137,7 +135,7 @@ public class TheDarkness : MonoBehaviour
             speed = 1.2f;
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime); //movetowards - идти к чему-то
 
-            if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance / 2)
+            if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance)// / 2)
             {
                 anim.SetBool("doAttack", true);
                 anim.SetBool("isWalking", false);
