@@ -9,7 +9,7 @@ public class TheDarkness : MonoBehaviour
     SpriteRenderer sr;
 
     public float speed = 1;
-    public int patrolRoute; //маршрут патрулирования
+    public float patrolRoute; //маршрут патрулирования
     public Transform point;
     bool moveRight = true;
 
@@ -122,7 +122,6 @@ public class TheDarkness : MonoBehaviour
         if (pcScript.isWalking == false)
         {
             anim.SetBool("doAttack", false);
-            anim.SetBool("idle", true);
             angry = false;
 
             if (angry == false && chill == false && returns == false)

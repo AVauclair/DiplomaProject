@@ -171,9 +171,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: ground
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: HighSpeed
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isCrawl
     m_EventTreshold: 0
@@ -199,17 +196,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: isRun
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: ground
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isCrawl
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: HighSpeed
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isJump
@@ -399,12 +390,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: isCrawl
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: isRun
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: HighSpeed
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6510608631550120210}

@@ -439,7 +439,7 @@ public class PlayerController : MonoBehaviour
             if (FindObjectOfType<LevelCount>().levelNumber == 3)
             {
                 PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -10.1f);
-                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 20f);
+                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 12.8f);
 
                 PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
                 PlayerPrefs.SetInt("maxJumpValue", maxJumpValue);

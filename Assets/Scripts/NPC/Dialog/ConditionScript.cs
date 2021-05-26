@@ -30,6 +30,12 @@ public class ConditionScript : MonoBehaviour
     public GameObject dialogBeforeEnd;
     public GameObject dialogEnd;
 
+    [Header("SceneObjectsHub1")]
+    public GameObject dialogBeforeEndH1;
+
+    [Header("SceneObjectsL2")]
+    public GameObject dialogStartL2;
+
     [Header("Cutscenes")]
     public PlayableDirector takeGuardian;
     public PlayableDirector EndingDeath;
@@ -107,7 +113,19 @@ public class ConditionScript : MonoBehaviour
         }
         if (sceneNumber == 10)
         {
-
+            //nothing, that's ok (10 == finishing 1st level)
+        }
+        if (sceneNumber == 11)
+        {
+            Destroy(dialogBeforeEndH1);
+        }
+        if (sceneNumber == 12)
+        {
+            //nothing, that's ok (10 == finishing 1st level)
+        }
+        if (sceneNumber == 13)
+        {
+            dialogStartL2.SetActive(false);
         }
     }
 }
