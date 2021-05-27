@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isDead = false;
      
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
     private Transform tr;

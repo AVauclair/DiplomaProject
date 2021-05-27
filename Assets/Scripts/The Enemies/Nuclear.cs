@@ -59,9 +59,43 @@ public class Nuclear : MonoBehaviour
         GameObject explosionRef = (GameObject)Instantiate(explosion);
         explosionRef.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
+        DamageToPlayer();
 
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
+    }
+
+    private void DamageToPlayer()
+    {
+        if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance * 3 && Vector2.Distance(transform.position, player.position) > enemyTriggerDistance * 2)
+        {
+            FindObjectOfType<PlayerController>().hp -= Random.Range(1, 10);
+            FindObjectOfType<PlayerController>().hpValue.text = FindObjectOfType<PlayerController>().hp.ToString();
+            CalculateInertia(1000);
+        }
+        else if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance * 2 && Vector2.Distance(transform.position, player.position) > enemyTriggerDistance)
+        {
+            FindObjectOfType<PlayerController>().hp -= Random.Range(10, 20);
+            FindObjectOfType<PlayerController>().hpValue.text = FindObjectOfType<PlayerController>().hp.ToString();
+            CalculateInertia(3000);
+        }
+        else if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance)
+        {
+            FindObjectOfType<PlayerController>().hp -= Random.Range(20, 30);
+            FindObjectOfType<PlayerController>().hpValue.text = FindObjectOfType<PlayerController>().hp.ToString();
+            CalculateInertia(5000);
+        }
+    }
+
+    private void CalculateInertia(int power)
+    {
+        if (transform.position.x > player.position.x)
+        {
+            FindObjectOfType<PlayerController>().rb.AddForce(Vector2.left * power);
+        }
+        else
+        {
+            FindObjectOfType<PlayerController>().rb.AddForce(Vector2.right * power);
+        }
     }
 }
