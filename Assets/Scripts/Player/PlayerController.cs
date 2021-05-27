@@ -337,6 +337,11 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.DeleteAll();
         }
 
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            PlayerPrefs.SetInt("checkpointNumber", 4);
+        }
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             devJump = !devJump;
