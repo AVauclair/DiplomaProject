@@ -22374,7 +22374,7 @@ GameObject:
   - component: {fileID: 944581912}
   - component: {fileID: 944581909}
   m_Layer: 0
-  m_Name: Warrior
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24191,6 +24191,7 @@ MonoBehaviour:
   isWalking: 0
   highSpeed: 0
   isDead: 0
+  rb: {fileID: 0}
   hpValue: {fileID: 1620452265}
   dialogTrader2: {fileID: 1421416589}
   dialogTrader3: {fileID: 1221885661}
@@ -24584,6 +24585,8 @@ MonoBehaviour:
   dialogBeforeEnd: {fileID: 0}
   dialogEnd: {fileID: 0}
   dialogBeforeEndH1: {fileID: 837846354}
+  dialogStartPushL2: {fileID: 0}
+  dialogStartJumpL2: {fileID: 0}
   takeGuardian: {fileID: 0}
   EndingDeath: {fileID: 0}
   EndingWin: {fileID: 0}

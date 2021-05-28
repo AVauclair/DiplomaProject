@@ -20,7 +20,7 @@ public class CheckpointStartValues : MonoBehaviour
     {
         checkpointNumber = PlayerPrefs.GetInt("checkpointNumber");
 
-        if (checkpointNumber < 4)
+        if (checkpointNumber < 4 && checkpointNumber > 0)
         {
             checkpoints[checkpointNumber - 1].SetActive(false);
         }
@@ -28,6 +28,8 @@ public class CheckpointStartValues : MonoBehaviour
         {
             checkpoints[checkpointNumber].SetActive(false);
         }
+        else if (checkpointNumber == 0)
+        { }
         else
         {
             checkpoints[3].SetActive(false);

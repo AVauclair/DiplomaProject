@@ -190,18 +190,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.38171387, y: -1.054184}
+  m_Offset: {x: 6.2051697, y: 29.762695}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1024, y: 1024}
+    newSize: {x: 1024, y: 1024}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1010.85815, y: 1018.32117}
+  m_Size: {x: 882.7419, y: 956.6874}
   m_EdgeRadius: 0
 --- !u!212 &10689053
 SpriteRenderer:
@@ -2997,6 +2997,7 @@ MonoBehaviour:
   isWalking: 0
   highSpeed: 0
   isDead: 0
+  rb: {fileID: 0}
   hpValue: {fileID: 0}
   dialogTrader2: {fileID: 0}
   dialogTrader3: {fileID: 0}
@@ -28788,7 +28789,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.38171387, y: -1.054184}
+  m_Offset: {x: 0.3842163, y: 28.583054}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -28799,7 +28800,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1010.85815, y: 1018.32117}
+  m_Size: {x: 892.00745, y: 959.04663}
   m_EdgeRadius: 0
 --- !u!212 &273633022
 SpriteRenderer:
@@ -33861,7 +33862,7 @@ GameObject:
   - component: {fileID: 803001533}
   - component: {fileID: 803001532}
   m_Layer: 0
-  m_Name: Warrior
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37572,7 +37573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Platform: {fileID: 2019400061}
-  willObjectDestroy: 1
+  willObjectDestroy: 0
   willPlayerTrigger: 0
 --- !u!61 &952249645
 BoxCollider2D:

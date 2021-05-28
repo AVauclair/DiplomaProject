@@ -44,13 +44,13 @@ public class Watchman : MonoBehaviour
 
     private void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance)
+        if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance && (player.position.y < transform.position.y + 0.2f || player.position.y > transform.position.y - 0.2f))
         {
             angry = true;
             chill = false;
         }
 
-        if (Vector2.Distance(transform.position, player.position) > enemyTriggerDistance)
+        if (Vector2.Distance(transform.position, player.position) > enemyTriggerDistance || (player.position.y > transform.position.y + 0.2f || player.position.y < transform.position.y - 0.2f))
         {
             chill = true;
             angry = false;
