@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,20 +21,27 @@ public class CheckpointStartValues : MonoBehaviour
     {
         checkpointNumber = PlayerPrefs.GetInt("checkpointNumber");
 
-        if (checkpointNumber < 4 && checkpointNumber > 0)
+        try
         {
-            checkpoints[checkpointNumber - 1].SetActive(false);
+            if (checkpointNumber < 4 && checkpointNumber > 0)
+            {
+                checkpoints[checkpointNumber - 1].SetActive(false);
+            }
+            else if (checkpointNumber > 4)
+            {
+                checkpoints[checkpointNumber].SetActive(false);
+            }
+            else if (checkpointNumber == 0)
+            { }
+            else
+            {
+                checkpoints[3].SetActive(false);
+                checkpoints[4].SetActive(false);
+            }
         }
-        else if (checkpointNumber > 4)
+        catch (Exception e)
         {
-            checkpoints[checkpointNumber].SetActive(false);
-        }
-        else if (checkpointNumber == 0)
-        { }
-        else
-        {
-            checkpoints[3].SetActive(false);
-            checkpoints[4].SetActive(false);
+            Debug.Log(e);
         }
 
         //if (checkpointNumber == 1)

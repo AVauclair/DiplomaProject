@@ -96,7 +96,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         DevKit();
-        if (hp <= 0)
+
+        if (hp <= 0 && FindObjectOfType<LevelCount>().levelNumber != 1)
         {
             SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }
@@ -448,7 +449,7 @@ public class PlayerController : MonoBehaviour
 
             if (FindObjectOfType<LevelCount>().levelNumber == 3)
             {
-                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -10.1f);
+                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -50.1f);
                 PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 12.8f);
 
                 PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);

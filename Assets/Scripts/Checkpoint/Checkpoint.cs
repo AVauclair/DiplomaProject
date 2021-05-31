@@ -22,6 +22,8 @@ public class Checkpoint : MonoBehaviour
                 PlayerPrefs.SetFloat("offsetX", FindObjectOfType<WatchPlayer>().offset.x = 1.15f);
                 PlayerPrefs.SetFloat("offsetY", FindObjectOfType<WatchPlayer>().offset.y = 0.5f);
                 PlayerPrefs.SetFloat("dumping", FindObjectOfType<WatchPlayer>().dumping = 2f);
+
+                PlayerPrefs.SetInt("maxJumpValue", FindObjectOfType<PlayerController>().maxJumpValue = 1);
             }
 
             if (FindObjectOfType<CheckpointStartValues>().checkpointNumber == 2)
