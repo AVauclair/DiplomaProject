@@ -344,6 +344,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             PlayerPrefs.SetInt("checkpointNumber", 4);
+            PlayerPrefs.Save();
         }
 
         if (Input.GetKeyDown(KeyCode.G))

@@ -36,6 +36,7 @@ public class ConditionScript : MonoBehaviour
     [Header("SceneObjectsL2")]
     public GameObject dialogStartPushL2;
     public GameObject dialogStartJumpL2;
+    public GameObject dialogMaze;
 
     [Header("Cutscenes")]
     public PlayableDirector takeGuardian;
@@ -128,6 +129,10 @@ public class ConditionScript : MonoBehaviour
         {
             dialogStartPushL2.SetActive(false);
             dialogStartJumpL2.SetActive(false);
+        }
+        if (sceneNumber == 14)
+        {
+            dialogMaze.SetActive(false);
         }
     }
 }

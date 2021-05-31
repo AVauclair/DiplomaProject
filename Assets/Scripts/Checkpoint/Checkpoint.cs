@@ -58,7 +58,7 @@ public class Checkpoint : MonoBehaviour
             PlayerPrefs.SetInt("havingWarriorSoul", FindObjectOfType<PlayerController>().havingWarriorSoul);
             PlayerPrefs.Save();
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
