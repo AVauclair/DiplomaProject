@@ -96,6 +96,10 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         DevKit();
+        if (hp <= 0)
+        {
+            SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
+        }
 
         if (FindObjectOfType<DialogManager>().checker != null)
         {

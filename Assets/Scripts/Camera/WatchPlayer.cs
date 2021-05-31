@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class WatchPlayer : MonoBehaviour
 {
-    [SerializeField]
+
     public float leftLimit;
-    [SerializeField]
     public float rightLimit;
-    [SerializeField]
     public float downLimit;
-    [SerializeField]
     public float upLimit;
 
     public float dumping = 1.5f;

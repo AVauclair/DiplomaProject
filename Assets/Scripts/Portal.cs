@@ -8,6 +8,7 @@ public class Portal : MonoBehaviour
     public GameObject player;
 
     private bool inTrigger = false;
+    public bool teleportAuto;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,7 +22,17 @@ public class Portal : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (teleportAuto == false)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (inTrigger == true)
+                {
+                    player.transform.position = new Vector2(alterPortal.transform.position.x, alterPortal.transform.position.y);
+                }
+            }
+        }
+        else
         {
             if (inTrigger == true)
             {
