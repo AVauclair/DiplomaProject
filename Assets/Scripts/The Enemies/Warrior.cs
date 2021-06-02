@@ -9,7 +9,7 @@ public class Warrior : MonoBehaviour
     Animator anim;
     Transform tr;
 
-    public float speed = 1;
+    public float speed = 0.7f;
     public float patrolRoute; //маршрут патрулирования
     public Transform point;
     public bool moveRight = true;
@@ -29,6 +29,9 @@ public class Warrior : MonoBehaviour
 
     int hp = 100;
 
+    bool canAttack = true;
+    public bool catchPlayer = false;
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,6 +56,7 @@ public class Warrior : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) > enemyTriggerDistance) //|| (player.position.y > transform.position.y + 0.2f || player.position.y < transform.position.y - 0.2f))
         {
             chill = true;
+            canAttack = true;
             angry = false;
         }
 
@@ -131,31 +135,63 @@ public class Warrior : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance && Vector2.Distance(transform.position, player.position) > enemyTriggerDistance / 2)
         {
+            //anim.SetBool("attack1", false);
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
 
         if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance / 2)
         {
-
-            StartCoroutine(Attack());
+            if (canAttack == true)
+            {
+                StartCoroutine(Attack());
+            }
         }
     }
 
     int animNumber = 0;
     IEnumerator Attack()
     {
-        anim.SetBool("walk", false);
-        animNumber = Random.Range(1, 2);
-        anim.SetBool($"attack{animNumber}", true);
+        //anim.SetBool("walk", false);
+        //nimNumber = Random.Range(1, 3);
+        //Debug.Log(animNumber);
+        //anim.SetBool($"attack{animNumber}", true);
 
-        yield return new WaitForSeconds(1f);
-        anim.SetBool($"attack{animNumber}", false);
+        canAttack = false;
+        anim.SetBool("attack1", true);
+
+        yield return new WaitForSeconds(0.4f);
+        if (catchPlayer == true)
+        {
+            FindObjectOfType<PlayerController>().hp -= Random.Range(15, 25);
+            FindObjectOfType<PlayerController>().hpValue.text = FindObjectOfType<PlayerController>().hp.ToString();
+        }
+
+        yield return new WaitForSeconds(0.6f);
+        canAttack = true;
+        anim.SetBool("attack1", false);
+        //anim.SetBool($"attack{animNumber}", false);
+        //anim.SetBool("walk", true);
     }
 
     IEnumerator Dead()
     {
+        yield return new WaitForSeconds(1f);
         gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            catchPlayer = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            catchPlayer = false;
+        }
     }
 }
