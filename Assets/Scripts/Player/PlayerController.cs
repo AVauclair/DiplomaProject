@@ -400,6 +400,11 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             FindObjectOfType<WatchPlayer>().rightLimit = 31.4f;
         }
+        if (other.tag == "SecretRoom" && FindObjectOfType<LevelCount>().levelNumber == 3)
+        {
+            FindObjectOfType<WatchPlayer>().upLimit = 25f;
+            FindObjectOfType<WatchPlayer>().downLimit = -20.45f;
+        }
 
         if (other.tag == "death")
         {
@@ -449,7 +454,7 @@ public class PlayerController : MonoBehaviour
 
             if (FindObjectOfType<LevelCount>().levelNumber == 3)
             {
-                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -50.1f);
+                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -20.45f);
                 PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 12.8f);
 
                 PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
