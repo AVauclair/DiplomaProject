@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
                 Push();
                 ShowInterface();
                 OpenMenu();
+                Attack();
                 if (rb.velocity.y == 0 && afterJump)
                 {
                     anim.SetBool("isJump", false);
@@ -139,6 +140,7 @@ public class PlayerController : MonoBehaviour
             Push();
             ShowInterface();
             OpenMenu();
+            Attack();
             if (rb.velocity.y == 0 && afterJump)
             {
                 anim.SetBool("isJump", false);
@@ -254,6 +256,31 @@ public class PlayerController : MonoBehaviour
             transform.localScale *= new Vector2(-1, 1);
             isFacingRight = !isFacingRight;
         }
+    }
+
+    bool attack = true;
+    public bool punchToCheck = false;
+    int animNumber;
+    private void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ground == true && isCrawling == false && attack == true)
+        {
+            animNumber = Random.Range(1, 5);
+            attack = false;
+            StopAllCoroutines();
+            anim.SetBool($"isAttack{animNumber}", true);
+            StartCoroutine(AttackReload());
+        }
+    }
+
+    IEnumerator AttackReload()
+    {
+        yield return new WaitForSeconds(0.2f);
+        punchToCheck = true;
+        yield return new WaitForSeconds(0.3f);
+        anim.SetBool($"isAttack{animNumber}", false);
+        attack = true;
+        punchToCheck = false;
     }
 
     public Transform topCheck;
@@ -503,6 +530,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    GameObject enemy;
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "StealthTrigger" && isCrawling == false)

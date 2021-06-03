@@ -20,6 +20,7 @@ public class Nuclear : MonoBehaviour
     public AudioClip explosive;
 
     private bool clipIsPlayed = false;
+    public int hp = 2;
 
     private void Start()
     {
@@ -36,6 +37,16 @@ public class Nuclear : MonoBehaviour
 
     private void Update()
     {
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+        if (FindObjectOfType<PlayerController>().punchToCheck == true && catchPlayer == true)
+        {
+            FindObjectOfType<PlayerController>().punchToCheck = false;
+            hp -= 1;
+        }
+
         if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance)
         {
             if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance)// / 2)
@@ -96,6 +107,23 @@ public class Nuclear : MonoBehaviour
         else
         {
             FindObjectOfType<PlayerController>().rb.AddForce(Vector2.right * power);
+        }
+    }
+
+    bool catchPlayer = false;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            catchPlayer = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            catchPlayer = false;
         }
     }
 }

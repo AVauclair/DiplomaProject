@@ -23,6 +23,8 @@ TagManager:
   - Trader1
   - Trader2
   - Trader3
+  - Nuclear
+  - Warrior
   layers:
   - Default
   - TransparentFX

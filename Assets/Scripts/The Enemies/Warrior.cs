@@ -27,7 +27,7 @@ public class Warrior : MonoBehaviour
     private Rigidbody2D playerRB;
     private Transform playerTR;
 
-    int hp = 100;
+    public int hp = 100;
 
     bool canAttack = true;
     public bool catchPlayer = false;
@@ -47,6 +47,21 @@ public class Warrior : MonoBehaviour
 
     private void Update()
     {
+        if (hp <= 0)
+        {
+            anim.SetBool("attack1", false);
+            anim.SetBool("attack2", false);
+            anim.SetBool("walk", false);
+            anim.SetBool("dead", true);
+
+            StartCoroutine(Dead());
+        }
+        if (FindObjectOfType<PlayerController>().punchToCheck == true && catchPlayer == true)
+        {
+            FindObjectOfType<PlayerController>().punchToCheck = false;
+            hp -= Random.Range(30, 45);
+        }
+
         if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance) //&& (player.position.y < transform.position.y + 0.2f || player.position.y > transform.position.y - 0.2f))
         {
             angry = true;
@@ -71,16 +86,6 @@ public class Warrior : MonoBehaviour
         else if (angry == true)
         {
             Angry();
-        }
-
-        if (hp <= 0)
-        {
-            anim.SetBool("attack1", false);
-            anim.SetBool("attack2", false);
-            anim.SetBool("walk", false);
-            anim.SetBool("dead", true);
-
-            StartCoroutine(Dead());
         }
     }
 
@@ -162,7 +167,7 @@ public class Warrior : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         if (catchPlayer == true)
         {
-            FindObjectOfType<PlayerController>().hp -= Random.Range(15, 25);
+            FindObjectOfType<PlayerController>().hp -= Random.Range(10, 15);
             FindObjectOfType<PlayerController>().hpValue.text = FindObjectOfType<PlayerController>().hp.ToString();
         }
 
