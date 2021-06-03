@@ -35,6 +35,14 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sr;
     private Transform tr;
 
+    private AudioSource audioSource;
+    public AudioClip pushClip;
+    public AudioClip jumpClip;
+    public AudioClip attack1;
+    public AudioClip attack2;
+    public AudioClip attack3;
+    public AudioClip attack4;
+
     private ScriptTrigger scriptTrigger;
 
     public TextMeshProUGUI hpValue;
@@ -48,6 +56,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         tr = GetComponent<Transform>();
+        audioSource = GetComponent<AudioSource>();
 
         FindObjectOfType<CheckpointStartValues>().CheckpointCheck();
         FindObjectOfType<CheckpointStartValues>().CheckpointStart();
@@ -156,6 +165,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isCrawling && (ground || (jumpCount < maxJumpValue)))
         {
+            audioSource.PlayOneShot(jumpClip);
             jumpCount++;
             afterJump = true;
 
@@ -231,8 +241,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && !pushLock)
         {
             pushLock = true;
-            PushLock(); 
+            PushLock();
             //Invoke("PushLock", 0.5f);
+            audioSource.PlayOneShot(pushClip);
             if (!isFacingRight)
             {
                 rb.AddForce(Vector2.left * pushImpulse);
@@ -277,10 +288,19 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         punchToCheck = true;
+        WhichAttackClipWillPlay();
         yield return new WaitForSeconds(0.3f);
         anim.SetBool($"isAttack{animNumber}", false);
         attack = true;
         punchToCheck = false;
+    }
+
+    private void WhichAttackClipWillPlay()
+    {
+        if (animNumber == 1) audioSource.PlayOneShot(attack1);
+        else if (animNumber == 2) audioSource.PlayOneShot(attack2);
+        else if (animNumber == 3) audioSource.PlayOneShot(attack3);
+        else if (animNumber == 4) audioSource.PlayOneShot(attack4);
     }
 
     public Transform topCheck;
