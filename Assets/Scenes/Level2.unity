@@ -1651,7 +1651,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &176382459
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1696,7 +1696,7 @@ MonoBehaviour:
   moveRight: 1
   chill: 1
   angry: 0
-  willPatroul: 1
+  willPatroul: 0
   enemyTriggerDistance: 1
   hp: 100
   catchPlayer: 0
@@ -50208,7 +50208,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &1767102467
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50253,7 +50253,7 @@ MonoBehaviour:
   moveRight: 1
   chill: 1
   angry: 0
-  willPatroul: 1
+  willPatroul: 0
   enemyTriggerDistance: 1
   hp: 100
   catchPlayer: 0

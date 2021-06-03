@@ -137,14 +137,24 @@ public class Warrior : MonoBehaviour
         //    lineRenderer.SetPosition(0, playerTR.position);
         //    lineRenderer.SetPosition(1, playerTR.position + playerTR.right * 100);
         //}
-
-        if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance && Vector2.Distance(transform.position, player.position) > enemyTriggerDistance / 2)
+        if (willPatroul == true)
         {
-            //anim.SetBool("attack1", false);
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance && Vector2.Distance(transform.position, player.position) > enemyTriggerDistance / 2)
+            {
+                //anim.SetBool("attack1", false);
+                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            }
         }
 
-        if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance / 2)
+        //if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance / 2)
+        //{
+        //    if (canAttack == true)
+        //    {
+        //        StartCoroutine(Attack());
+        //    }
+        //}
+
+        if (catchPlayer == true)
         {
             if (canAttack == true)
             {
