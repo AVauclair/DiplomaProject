@@ -38,10 +38,16 @@ public class ConditionScript : MonoBehaviour
     public GameObject dialogStartJumpL2;
     public GameObject dialogMaze;
 
+    [Header("SceneObjectsHub2")]
+    public GameObject dialogWithTrader;
+    public GameObject GetAbility;
+    public GameObject dialogWithVoxH2;
+
     [Header("Cutscenes")]
     public PlayableDirector takeGuardian;
     public PlayableDirector EndingDeath;
     public PlayableDirector EndingWin;
+    public PlayableDirector endH2;
 
     public void ConditionsChecker()
     {
@@ -123,7 +129,7 @@ public class ConditionScript : MonoBehaviour
         }
         if (sceneNumber == 12)
         {
-            //nothing, that's ok (10 == finishing 1st level)
+            //nothing, that's ok (12 == finishing 1st hub)
         }
         if (sceneNumber == 13)
         {
@@ -133,6 +139,31 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 14)
         {
             dialogMaze.SetActive(false);
+        }
+        if (sceneNumber == 15)
+        {
+            //nothing, that's ok (15 == finishing 2nd level)
+        }
+        if (sceneNumber == 16)
+        {
+            dialogWithTrader.SetActive(false);
+            GetAbility.SetActive(true);
+        }
+
+        if (sceneNumber == 17)
+        {
+            GetAbility.SetActive(false);
+            dialogWithVoxH2.SetActive(true);
+            FindObjectOfType<PlayerController>().maxJumpValue = 2;
+            FindObjectOfType<PlayerController>().pushImpulse = 1000;
+        }
+        if (sceneNumber == 18)
+        {
+            endH2.Play();
+        }
+        if (sceneNumber == 19)
+        {
+            //nothing, that's ok (19 == finishing 2nd hub)
         }
     }
 }

@@ -3548,6 +3548,14 @@ MonoBehaviour:
   highSpeed: 0
   isDead: 0
   rb: {fileID: 0}
+  pushClip: {fileID: 0}
+  jumpClip: {fileID: 0}
+  walkClip: {fileID: 0}
+  runClip: {fileID: 0}
+  attack1: {fileID: 0}
+  attack2: {fileID: 0}
+  attack3: {fileID: 0}
+  attack4: {fileID: 0}
   hpValue: {fileID: 0}
   dialogTrader2: {fileID: 0}
   dialogTrader3: {fileID: 0}
@@ -3555,6 +3563,7 @@ MonoBehaviour:
   jumpCount: 0
   maxJumpValue: 300
   pushImpulse: 1000
+  punchToCheck: 0
   topCheck: {fileID: 945628793}
   Roof:
     serializedVersion: 2
@@ -39142,7 +39151,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: def340fdf20028b428076b58a08d8d33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -116217,6 +116226,7 @@ MonoBehaviour:
   dialogBeforeEndH1: {fileID: 0}
   dialogStartPushL2: {fileID: 0}
   dialogStartJumpL2: {fileID: 0}
+  dialogMaze: {fileID: 0}
   takeGuardian: {fileID: 1833461745}
   EndingDeath: {fileID: 866952441}
   EndingWin: {fileID: 810291151}

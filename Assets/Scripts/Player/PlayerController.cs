@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip pushClip;
     public AudioClip jumpClip;
+    public AudioClip walkClip;
+    public AudioClip runClip;
     public AudioClip attack1;
     public AudioClip attack2;
     public AudioClip attack3;
@@ -391,7 +393,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            PlayerPrefs.SetInt("checkpointNumber", 4);
+            PlayerPrefs.SetFloat("upLimit", 25);
             PlayerPrefs.Save();
         }
 
@@ -490,7 +492,8 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<ConditionScript>().sceneNumber++;
             PlayerPrefs.SetInt("levelNumber", FindObjectOfType<LevelCount>().levelNumber);
             PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
-            
+            PlayerPrefs.SetInt("souls", souls);
+
             if (FindObjectOfType<LevelCount>().levelNumber == 2)
             {
                 PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -8.92f);
@@ -508,7 +511,22 @@ public class PlayerController : MonoBehaviour
                 PlayerPrefs.SetInt("maxJumpValue", maxJumpValue);
                 PlayerPrefs.SetInt("pushImpulse", pushImpulse);
                 PlayerPrefs.SetInt("maxHP", maxHP);
-                PlayerPrefs.SetInt("souls", souls);
+            }
+
+            if (FindObjectOfType<LevelCount>().levelNumber == 4)
+            {
+                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 25f);
+                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -20.45f);
+            }
+
+            if (FindObjectOfType<LevelCount>().levelNumber == 5)
+            {
+                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 25f);
+                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -20.45f);
+
+                PlayerPrefs.SetInt("maxJumpValue", maxJumpValue);
+                PlayerPrefs.SetInt("pushImpulse", pushImpulse);
+                PlayerPrefs.SetInt("maxHP", maxHP);
             }
             SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }

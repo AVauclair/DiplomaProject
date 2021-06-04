@@ -1254,6 +1254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alterPortal: {fileID: 1001117834}
   player: {fileID: 1339416815}
+  teleportAuto: 0
 --- !u!61 &523420896
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1595,7 +1596,6 @@ GameObject:
   - component: {fileID: 564085737}
   - component: {fileID: 564085736}
   - component: {fileID: 564085735}
-  - component: {fileID: 564085738}
   m_Layer: 0
   m_Name: Trader3
   m_TagString: Untagged
@@ -1714,27 +1714,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &564085738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564085733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9636f1cb119257e45b25b65c72484733, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogsObjects:
-  - {fileID: 0}
-  inTrigger: 0
-  inDialog: 0
-  willIncreaseSceneNumber: 0
-  playAutomatically: 0
-  willRepeat: 0
-  repeat: 0
-  dialogNumber: 0
 --- !u!1 &575268570
 GameObject:
   m_ObjectHideFlags: 0
@@ -22062,7 +22041,7 @@ GameObject:
   - component: {fileID: 792445693}
   - component: {fileID: 792445692}
   m_Layer: 0
-  m_Name: DialogWithWarrior
+  m_Name: DialogWithKnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22678,6 +22657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alterPortal: {fileID: 523420894}
   player: {fileID: 1339416815}
+  teleportAuto: 0
 --- !u!61 &1001117836
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22889,7 +22869,6 @@ GameObject:
   - component: {fileID: 1047556457}
   - component: {fileID: 1047556456}
   - component: {fileID: 1047556455}
-  - component: {fileID: 1047556458}
   m_Layer: 0
   m_Name: Trader1
   m_TagString: Untagged
@@ -23008,27 +22987,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1047556458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047556453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9636f1cb119257e45b25b65c72484733, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogsObjects:
-  - {fileID: 0}
-  inTrigger: 0
-  inDialog: 0
-  willIncreaseSceneNumber: 0
-  playAutomatically: 0
-  willRepeat: 0
-  repeat: 0
-  dialogNumber: 0
 --- !u!1 &1050316250
 GameObject:
   m_ObjectHideFlags: 0
@@ -23875,7 +23833,6 @@ GameObject:
   - component: {fileID: 1320799879}
   - component: {fileID: 1320799878}
   - component: {fileID: 1320799877}
-  - component: {fileID: 1320799880}
   m_Layer: 0
   m_Name: Trader2
   m_TagString: Untagged
@@ -23994,27 +23951,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1320799880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320799875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9636f1cb119257e45b25b65c72484733, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogsObjects:
-  - {fileID: 0}
-  inTrigger: 0
-  inDialog: 0
-  willIncreaseSceneNumber: 0
-  playAutomatically: 0
-  willRepeat: 0
-  repeat: 0
-  dialogNumber: 0
 --- !u!1 &1339416815
 GameObject:
   m_ObjectHideFlags: 0
@@ -24192,6 +24128,14 @@ MonoBehaviour:
   highSpeed: 0
   isDead: 0
   rb: {fileID: 0}
+  pushClip: {fileID: 0}
+  jumpClip: {fileID: 0}
+  walkClip: {fileID: 0}
+  runClip: {fileID: 0}
+  attack1: {fileID: 0}
+  attack2: {fileID: 0}
+  attack3: {fileID: 0}
+  attack4: {fileID: 0}
   hpValue: {fileID: 1620452265}
   dialogTrader2: {fileID: 1421416589}
   dialogTrader3: {fileID: 1221885661}
@@ -24199,6 +24143,7 @@ MonoBehaviour:
   jumpCount: 0
   maxJumpValue: 1
   pushImpulse: 0
+  punchToCheck: 0
   topCheck: {fileID: 0}
   Roof:
     serializedVersion: 2
@@ -24587,6 +24532,10 @@ MonoBehaviour:
   dialogBeforeEndH1: {fileID: 837846354}
   dialogStartPushL2: {fileID: 0}
   dialogStartJumpL2: {fileID: 0}
+  dialogMaze: {fileID: 0}
+  dialogWithTrader: {fileID: 0}
+  GetAbility: {fileID: 0}
+  dialogWithVoxH2: {fileID: 0}
   takeGuardian: {fileID: 0}
   EndingDeath: {fileID: 0}
   EndingWin: {fileID: 0}
