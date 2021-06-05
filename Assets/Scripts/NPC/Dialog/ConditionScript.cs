@@ -43,11 +43,20 @@ public class ConditionScript : MonoBehaviour
     public GameObject GetAbility;
     public GameObject dialogWithVoxH2;
 
+    [Header("SceneObjectsL3")]
+    public GameObject tilemapDoorL3;
+    public GameObject dialogWithKnightL3;
+    public GameObject ClosingDoorTrigger;
+    public GameObject musicObject;
+    public AudioClip bossFightSong;
+    public AudioClip defaultSong;
+
     [Header("Cutscenes")]
     public PlayableDirector takeGuardian;
     public PlayableDirector EndingDeath;
     public PlayableDirector EndingWin;
     public PlayableDirector endH2;
+    public PlayableDirector L3;
 
     public void ConditionsChecker()
     {
@@ -164,6 +173,23 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 19)
         {
             //nothing, that's ok (19 == finishing 2nd hub)
+        }
+        if (sceneNumber == 20)
+        {
+            sceneNumber++;
+
+            dialogWithKnightL3.SetActive(false);
+            tilemapDoorL3.SetActive(true);
+            PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
+            PlayerPrefs.Save();
+
+            musicObject.GetComponent<AudioSource>().PlayOneShot(bossFightSong);
+            L3.Play();
+
+        }
+        if (sceneNumber == 21)
+        {
+            ClosingDoorTrigger.SetActive(true);
         }
     }
 }

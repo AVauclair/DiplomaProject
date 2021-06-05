@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour
             hp = maxHP;
             hpValue.text = hp.ToString();
         }
+
+        FindObjectOfType<ConditionScript>().tilemapDoorL3.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -453,6 +455,13 @@ public class PlayerController : MonoBehaviour
         {
             FindObjectOfType<WatchPlayer>().upLimit = 25f;
             FindObjectOfType<WatchPlayer>().downLimit = -20.45f;
+        }
+        if (other.tag == "SecretRoom" && FindObjectOfType<LevelCount>().levelNumber == 5)
+        {
+            FindObjectOfType<ConditionScript>().tilemapDoorL3.SetActive(true);
+            FindObjectOfType<ConditionScript>().dialogWithKnightL3.SetActive(false);
+            FindObjectOfType<ConditionScript>().L3.Play();
+            FindObjectOfType<ConditionScript>().musicObject.GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<ConditionScript>().bossFightSong);
         }
 
         if (other.tag == "death")

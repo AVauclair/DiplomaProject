@@ -22376,7 +22376,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.26, y: 0.38}
+    oldSize: {x: 0.26, y: 0.71}
     newSize: {x: 0.26, y: 0.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -22444,7 +22444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944581907}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.5, y: -4.6247363, z: 19.950844}
+  m_LocalPosition: {x: -28.46, y: -4.456, z: 19.950844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1008600020}
@@ -24536,9 +24536,17 @@ MonoBehaviour:
   dialogWithTrader: {fileID: 0}
   GetAbility: {fileID: 0}
   dialogWithVoxH2: {fileID: 0}
+  tilemapDoorL3: {fileID: 0}
+  dialogWithKnightL3: {fileID: 0}
+  ClosingDoorTrigger: {fileID: 0}
+  musicObject: {fileID: 0}
+  bossFightSong: {fileID: 0}
+  defaultSong: {fileID: 0}
   takeGuardian: {fileID: 0}
   EndingDeath: {fileID: 0}
   EndingWin: {fileID: 0}
+  endH2: {fileID: 0}
+  L3: {fileID: 0}
 --- !u!4 &1367335292
 Transform:
   m_ObjectHideFlags: 0
