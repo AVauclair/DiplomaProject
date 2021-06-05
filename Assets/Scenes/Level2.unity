@@ -33709,7 +33709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855157084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.34, y: -5.14, z: -10}
+  m_LocalPosition: {x: -33.08, y: -8.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1805060678}
@@ -61899,10 +61899,17 @@ MonoBehaviour:
   dialogWithTrader: {fileID: 0}
   GetAbility: {fileID: 0}
   dialogWithVoxH2: {fileID: 0}
+  tilemapDoorL3: {fileID: 0}
+  dialogWithKnightL3: {fileID: 0}
+  ClosingDoorTrigger: {fileID: 0}
+  musicObject: {fileID: 0}
+  bossFightSong: {fileID: 0}
+  defaultSong: {fileID: 0}
   takeGuardian: {fileID: 0}
   EndingDeath: {fileID: 0}
   EndingWin: {fileID: 0}
   endH2: {fileID: 0}
+  L3: {fileID: 0}
 --- !u!4 &1889919601
 Transform:
   m_ObjectHideFlags: 0

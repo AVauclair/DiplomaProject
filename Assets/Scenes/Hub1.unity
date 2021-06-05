@@ -29510,7 +29510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
     name: "\u0420\u044B\u0446\u0430\u0440\u044C \u041F\u043E\u0441\u043C\u0435\u0440\u0442\u0438\u044F"
-    portrait: {fileID: 4723107735738678597, guid: 46e181fcc4d8ada40b185b1971b586a6, type: 3}
+    portrait: {fileID: -3322378276405846821, guid: 425901796b644db41a8605bf7a9bbdb3, type: 3}
     color: {r: 0.15566039, g: 0.4610021, b: 1, a: 0.62352943}
     sentences:
     - "\u041C\u043D\u0435 \u043F\u043E\u043A\u0430\u0437\u0430\u043B\u043E\u0441\u044C..."

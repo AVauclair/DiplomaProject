@@ -3127,7 +3127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
     name: "\u0420\u044B\u0446\u0430\u0440\u044C \u041F\u043E\u0441\u043C\u0435\u0440\u0442\u0438\u044F"
-    portrait: {fileID: 4723107735738678597, guid: 46e181fcc4d8ada40b185b1971b586a6, type: 3}
+    portrait: {fileID: -3322378276405846821, guid: 425901796b644db41a8605bf7a9bbdb3, type: 3}
     color: {r: 0.15566039, g: 0.4610021, b: 1, a: 0.62352943}
     sentences:
     - "\u0422\u0432\u043E\u0435 \u043C\u0435\u0440\u0442\u0432\u043E\u0435 \u0442\u0435\u043B\u043E
@@ -4106,7 +4106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783266826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.34, y: -5.14, z: -10}
+  m_LocalPosition: {x: -26.32, y: 24.19, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2010763085}
@@ -4509,7 +4509,7 @@ MonoBehaviour:
   EndingDeath: {fileID: 0}
   EndingWin: {fileID: 0}
   endH2: {fileID: 0}
-  L3: {fileID: 0}
+  L3: {fileID: 411124025}
 --- !u!4 &849641706
 Transform:
   m_ObjectHideFlags: 0
@@ -32074,8 +32074,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726400173}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.27, y: -8.65, z: 39.901684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.29, y: 24.102, z: 39.901684}
   m_LocalScale: {x: 0.2913137, y: 0.2913137, z: 0.1105046}
   m_Children:
   - {fileID: 2090486776}

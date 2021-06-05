@@ -176,16 +176,15 @@ public class ConditionScript : MonoBehaviour
         }
         if (sceneNumber == 20)
         {
-            sceneNumber++;
-
             dialogWithKnightL3.SetActive(false);
             tilemapDoorL3.SetActive(true);
-            PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
-            PlayerPrefs.Save();
-
+            musicObject.GetComponent<AudioSource>().Stop();
             musicObject.GetComponent<AudioSource>().PlayOneShot(bossFightSong);
             L3.Play();
 
+            sceneNumber++;
+            PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
+            PlayerPrefs.Save();
         }
         if (sceneNumber == 21)
         {
