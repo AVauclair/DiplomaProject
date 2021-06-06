@@ -470,11 +470,19 @@ public class PlayerController : MonoBehaviour
         {
             FindObjectOfType<ConditionScript>().tilemapDoorL3.SetActive(true);
             FindObjectOfType<ConditionScript>().dialogWithKnightL3.SetActive(false);
-            FindObjectOfType<ConditionScript>().L3.Play();
+            try
+            {
+                FindObjectOfType<ConditionScript>().L3.Play();
+            }
+            catch { }
 
             FindObjectOfType<ConditionScript>().musicObject.GetComponent<AudioSource>().Stop();
             FindObjectOfType<ConditionScript>().musicObject.GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<ConditionScript>().bossFightSong);
-            StartCoroutine(CutScene6());
+            if (FindObjectOfType<ConditionScript>().L3 != null)
+            {
+                StartCoroutine(CutScene6());
+            }
+            FindObjectOfType<Knight>().hpObject.SetActive(true);
             Destroy(other.gameObject);
         }
 
@@ -642,5 +650,6 @@ public class PlayerController : MonoBehaviour
         inCutscene = true;
         yield return new WaitForSeconds(14);
         inCutscene = false;
+        FindObjectOfType<Knight>().fightIsStarted = true;
     }
 }

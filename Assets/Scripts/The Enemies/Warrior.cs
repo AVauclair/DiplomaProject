@@ -119,24 +119,6 @@ public class Warrior : MonoBehaviour
 
     void Angry()
     {
-
-
-        //RaycastHit2D hit = Physics2D.Raycast(playerRB.position * 2, playerTR.TransformDirection(Vector2.right));
-        //lineRenderer.SetPosition(0, playerTR.position);
-        //lineRenderer.SetPosition(1, hit.point);
-
-        //if (hit)
-        //{
-        //    Debug.Log(hit.transform.name);
-
-        //    lineRenderer.SetPosition(0, playerTR.position);
-        //    lineRenderer.SetPosition(1, hit.point);
-        //}
-        //else
-        //{
-        //    lineRenderer.SetPosition(0, playerTR.position);
-        //    lineRenderer.SetPosition(1, playerTR.position + playerTR.right * 100);
-        //}
         if (willPatroul == true)
         {
             if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance && Vector2.Distance(transform.position, player.position) > enemyTriggerDistance / 2)
@@ -145,15 +127,6 @@ public class Warrior : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             }
         }
-
-        //if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance / 2)
-        //{
-        //    if (canAttack == true)
-        //    {
-        //        StartCoroutine(Attack());
-        //    }
-        //}
-
         if (catchPlayer == true)
         {
             if (canAttack == true)
@@ -163,14 +136,8 @@ public class Warrior : MonoBehaviour
         }
     }
 
-    int animNumber = 0;
     IEnumerator Attack()
     {
-        //anim.SetBool("walk", false);
-        //nimNumber = Random.Range(1, 3);
-        //Debug.Log(animNumber);
-        //anim.SetBool($"attack{animNumber}", true);
-
         canAttack = false;
         anim.SetBool("attack1", true);
 
@@ -184,8 +151,6 @@ public class Warrior : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         canAttack = true;
         anim.SetBool("attack1", false);
-        //anim.SetBool($"attack{animNumber}", false);
-        //anim.SetBool("walk", true);
     }
 
     IEnumerator Dead()

@@ -25,6 +25,7 @@ TagManager:
   - Trader3
   - Nuclear
   - Warrior
+  - Knight
   layers:
   - Default
   - TransparentFX
