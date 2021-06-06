@@ -184,6 +184,7 @@ public class ConditionScript : MonoBehaviour
             musicObject.GetComponent<AudioSource>().PlayOneShot(bossFightSong);
             L3.Play();
             StartCoroutine(FindObjectOfType<PlayerController>().CutScene6());
+            FindObjectOfType<Knight>().fightIsStarted = true;
             FindObjectOfType<Knight>().hpObject.SetActive(true);
             sceneNumber++;
             PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);

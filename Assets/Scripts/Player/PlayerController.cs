@@ -482,6 +482,7 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(CutScene6());
             }
+            FindObjectOfType<Knight>().fightIsStarted = true;
             FindObjectOfType<Knight>().hpObject.SetActive(true);
             Destroy(other.gameObject);
         }
