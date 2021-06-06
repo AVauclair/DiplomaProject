@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     public bool highSpeed = false;
 
     public bool isDead = false;
+
+    public bool inCutscene = false;
      
     public Rigidbody2D rb;
     private Animator anim;
@@ -63,6 +65,11 @@ public class PlayerController : MonoBehaviour
         FindObjectOfType<CheckpointStartValues>().CheckpointCheck();
         FindObjectOfType<CheckpointStartValues>().CheckpointStart();
         FindObjectOfType<ConditionScript>().ConditionsChecker();
+
+        if (FindObjectOfType<CheckpointStartValues>().checkpointNumber == 0)
+        {
+            StartCoroutine(CutScene1());
+        }
 
         if (FindObjectOfType<LevelCount>().levelNumber > 1)
         {
@@ -99,10 +106,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Walk();
-            Flip();
-            Run();
-            Crawl();
+            if (inCutscene == false)
+            {
+                Walk();
+                Flip();
+                Run();
+                Crawl();
+            }
         }
     }
 
@@ -212,6 +222,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Flip()
+    {
+        if ((dirX > 0 && !isFacingRight) || (dirX < 0 && isFacingRight))
+        {
+            transform.localScale *= new Vector2(-1, 1);
+            isFacingRight = !isFacingRight;
+        }
+    }
+
     private void Run()
     {
         if (Input.GetKey(KeyCode.LeftShift))
@@ -262,15 +281,6 @@ public class PlayerController : MonoBehaviour
     private void PushLock()
     {
         pushLock = false;
-    }
-
-    private void Flip()
-    {
-        if ((dirX > 0 && !isFacingRight) || (dirX < 0 && isFacingRight))
-        {
-            transform.localScale *= new Vector2(-1, 1);
-            isFacingRight = !isFacingRight;
-        }
     }
 
     bool attack = true;
@@ -464,6 +474,7 @@ public class PlayerController : MonoBehaviour
 
             FindObjectOfType<ConditionScript>().musicObject.GetComponent<AudioSource>().Stop();
             FindObjectOfType<ConditionScript>().musicObject.GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<ConditionScript>().bossFightSong);
+            StartCoroutine(CutScene6());
             Destroy(other.gameObject);
         }
 
@@ -490,6 +501,7 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "EndTrigger")
         {
             FindObjectOfType<ConditionScript>().EndingWin.Play();
+            StartCoroutine(FindObjectOfType<PlayerController>().CutScene4());
             Destroy(other);
             Destroy(GameObject.Find("StealthTrigger"));
             Destroy(GameObject.Find("EndTrigger"));
@@ -586,11 +598,49 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "StealthTrigger" && isCrawling == false)
         {
             FindObjectOfType<ConditionScript>().EndingDeath.Play();
+            StartCoroutine(FindObjectOfType<PlayerController>().CutScene3());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         inTrigger = false;
+    }
+
+    public IEnumerator CutScene1()
+    {
+        inCutscene = true;
+        yield return new WaitForSeconds(12);
+        inCutscene = false;
+    }
+    public IEnumerator CutScene2()
+    {
+        inCutscene = true;
+        yield return new WaitForSeconds(9);
+        inCutscene = false;
+    }
+    public IEnumerator CutScene3()
+    {
+        inCutscene = true;
+        yield return new WaitForSeconds(6.5f);
+        inCutscene = false;
+    }
+    public IEnumerator CutScene4()
+    {
+        inCutscene = true;
+        yield return new WaitForSeconds(5);
+        inCutscene = false;
+    }
+    public IEnumerator CutScene5()
+    {
+        inCutscene = true;
+        yield return new WaitForSeconds(2.5f);
+        inCutscene = false;
+    }
+    public IEnumerator CutScene6()
+    {
+        inCutscene = true;
+        yield return new WaitForSeconds(14);
+        inCutscene = false;
     }
 }

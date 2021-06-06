@@ -73,6 +73,7 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 2)
         {
             takeGuardian.Play();
+            StartCoroutine(FindObjectOfType<PlayerController>().CutScene2());
 
             makingNoise.SetActive(false);
             dialogInPrison.SetActive(false);
@@ -169,6 +170,7 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 18)
         {
             endH2.Play();
+            StartCoroutine(FindObjectOfType<PlayerController>().CutScene5());
         }
         if (sceneNumber == 19)
         {
@@ -181,6 +183,7 @@ public class ConditionScript : MonoBehaviour
             musicObject.GetComponent<AudioSource>().Stop();
             musicObject.GetComponent<AudioSource>().PlayOneShot(bossFightSong);
             L3.Play();
+            StartCoroutine(FindObjectOfType<PlayerController>().CutScene6());
 
             sceneNumber++;
             PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);

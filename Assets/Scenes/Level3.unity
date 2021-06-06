@@ -1703,6 +1703,7 @@ GameObject:
   - component: {fileID: 176916000}
   - component: {fileID: 176915999}
   - component: {fileID: 176915998}
+  - component: {fileID: 176916001}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -1741,7 +1742,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.71}
+    oldSize: {x: 0.26, y: 0.71}
     newSize: {x: 0.26, y: 0.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1820,6 +1821,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &176916001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176915996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69337a172cffd841844740665b487e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &185540215
 GameObject:
   m_ObjectHideFlags: 0
