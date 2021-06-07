@@ -11,7 +11,7 @@ public class Knight : MonoBehaviour
     Transform tr;
 
     public float speed = 1.2f;
-    bool moveRight = false;
+    bool moveRight = true;
 
     //------------------ переменные ниже нужны для того, чтобы манипулировать состояниями противника можно было разными условиями
     public bool chill = true;
@@ -40,17 +40,26 @@ public class Knight : MonoBehaviour
     public bool secondPhase = false;
     public bool thirdPhase = false;
 
+    private AudioSource audioSource;
+    public AudioClip secondPhaseClip;
+    public AudioClip thirdPhaseClip;
+
+    public Object nuclear;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
+        audioSource = GetComponent<AudioSource>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         pcScript = player.GetComponent<PlayerController>();
         playerRB = player.GetComponent<Rigidbody2D>();
         playerTR = player.GetComponent<Transform>();
+
+        nuclear = Resources.Load("Nuclear");
     }
 
     bool firstStep = true;
@@ -72,6 +81,11 @@ public class Knight : MonoBehaviour
             FindObjectOfType<PlayerController>().punchToCheck = false;
             hp -= Random.Range(20, 40);
             hpText.text = hp.ToString();
+
+            if (secondPhase == true)
+            {
+                transform.position = point[Random.Range(0, 4)].transform.position;
+            }
         }
 
         if (fightIsStarted == true)
@@ -84,24 +98,40 @@ public class Knight : MonoBehaviour
                     if (transform.position.x < -25.95f && transform.position.y < 17 && player.position.y < 17)
                     {
                         transform.position = Vector2.MoveTowards(transform.position, new Vector2(-25.95f, 15.74f), speed * Time.deltaTime);
+                        anim.SetBool("isRun", true);
+                        if (moveRight == true)
+                        {
+                            transform.localScale *= new Vector2(-1, 1);
+                            moveRight = false;
+                        }
+
                         if (transform.position.x == -25.95f && transform.position.y < 17 && player.position.y < 17)
                         {
                             transform.position = new Vector2(-30, 17.51f);
                             firstPhase = true;
                             firstStep = false;
+                            anim.SetBool("isRun", false);
                         }
                     }
                 }
             }
             else if (hp > 250 && hp <= 350)
             {
-                firstPhase = false;
+                if (firstPhase == true)
+                {
+                    audioSource.PlayOneShot(secondPhaseClip);
+                    firstPhase = false;
+                }
                 secondPhase = true;
                 hpText.color = new Color32(255, 229, 0, 255);
             }
             else if (hp <= 250)
             {
-                secondPhase = false;
+                if (secondPhase == true)
+                {
+                    audioSource.PlayOneShot(thirdPhaseClip);
+                    secondPhase = false;
+                }
                 thirdPhase = true;
                 hpText.color = new Color32(255, 0, 0, 255);
             }
@@ -128,72 +158,99 @@ public class Knight : MonoBehaviour
         {
             if (player.position.x < transform.position.x)
             {
-                //transform.localScale *= new Vector2(-1, 1);
+                if (moveRight == true)
+                {
+                    transform.localScale *= new Vector2(-1, 1);
+                    moveRight = false;
+                }
+                anim.SetBool("isRun", false);
+
                 if (transform.position.x >= -33.2f && transform.position.x <= 25.95f && transform.position.y < 17 && player.position.y < 17)
                 {
                     transform.position = Vector2.MoveTowards(transform.position, new Vector2(-25.95f, 15.74f), speed * Time.deltaTime);
+                    anim.SetBool("isRun", true);
                 }
-                if (transform.position.x >= -33.2f && transform.position.x <= -27.26f && transform.position.y > 17 && transform.position.y < 19 && player.position.y < 19 && player.position.y > 17)
+                else if (transform.position.x >= -33.2f && transform.position.x <= -27.26f && transform.position.y > 17 && transform.position.y < 19 && player.position.y < 19 && player.position.y > 17)
                 {
                     transform.position = Vector2.MoveTowards(transform.position, new Vector2(-27.26f, 17.51f), speed * Time.deltaTime);
+                    anim.SetBool("isRun", true);
                 }
-                if (transform.position.x >= -34.35f && transform.position.x <= -26.42f && transform.position.y > 19 && player.position.y > 19)
+                else if (transform.position.x >= -34.35f && transform.position.x <= -26.42f && transform.position.y > 19 && player.position.y > 19)
                 {
                     transform.position = Vector2.MoveTowards(transform.position, new Vector2(-26.42f, 19.59f), speed * Time.deltaTime);
+                    anim.SetBool("isRun", true);
                 }
             }
             else
             {
+                if (moveRight == false)
+                {
+                    transform.localScale *= new Vector2(-1, 1);
+                    moveRight = true;
+                }
+                anim.SetBool("isRun", false);
+
                 if (transform.position.x >= -33.2f && transform.position.x <= 25.95f && transform.position.y < 17 && player.position.y < 17)
                 {
                     transform.position = Vector2.MoveTowards(transform.position, new Vector2(-33.2f, 15.74f), speed * Time.deltaTime);
+                    anim.SetBool("isRun", true);
                 }
-                if (transform.position.x >= -33.2f && transform.position.x <= -27.26f && transform.position.y > 17 && transform.position.y < 19 && player.position.y < 19 && player.position.y > 17)
+                else if (transform.position.x >= -33.2f && transform.position.x <= -27.26f && transform.position.y > 17 && transform.position.y < 19 && player.position.y < 19 && player.position.y > 17)
                 {
                     transform.position = Vector2.MoveTowards(transform.position, new Vector2(-34.43f, 17.51f), speed * Time.deltaTime);
+                    anim.SetBool("isRun", true);
                 }
-                if (transform.position.x >= -34.35f && transform.position.x <= -26.42f && transform.position.y > 19 && player.position.y > 19)
+                else if (transform.position.x >= -34.35f && transform.position.x <= -26.42f && transform.position.y > 19 && player.position.y > 19)
                 {
                     transform.position = Vector2.MoveTowards(transform.position, new Vector2(-34.35f, 19.59f), speed * Time.deltaTime);
+                    anim.SetBool("isRun", true);
                 }
             }
 
             if (transform.position.x <= 26 && transform.position.x >= 25.9f && transform.position.y < 17 && player.position.y < 17)
             {
                 transform.position = new Vector2(-30, 17.51f);
+                anim.SetBool("isRun", false);
             }
-            if (transform.position.x >= -27.3f && transform.position.x <= -27.1f && transform.position.y > 17 && transform.position.y < 19 && player.position.y < 19 && player.position.y > 17)
+            else if (transform.position.x >= -27.3f && transform.position.x <= -27.1f && transform.position.y > 17 && transform.position.y < 19 && player.position.y < 19 && player.position.y > 17)
             {
                 transform.position = new Vector2(-30, 19.59f);
+                anim.SetBool("isRun", false);
             }
-            if (transform.position.x >= -34.5f && transform.position.x <= -34.3f && transform.position.y > 19 && player.position.y > 19)
+            else if (transform.position.x >= -34.5f && transform.position.x <= -34.3f && transform.position.y > 19 && player.position.y > 19)
             {
                 transform.position = new Vector2(-30, 15.74f);
+                anim.SetBool("isRun", false);
             }
 
             if (transform.position.x >= -33.3f && transform.position.x <= -33.1f && transform.position.y < 17 && player.position.y < 17)
             {
                 transform.position = new Vector2(-30, 17.51f);
+                anim.SetBool("isRun", false);
             }
-            if (transform.position.x >= -33.3f && transform.position.x <= -33.1f && transform.position.y > 17 && transform.position.y < 19 && player.position.y < 19 && player.position.y > 17)
+            else if (transform.position.x >= -33.3f && transform.position.x <= -33.1f && transform.position.y > 17 && transform.position.y < 19 && player.position.y < 19 && player.position.y > 17)
             {
                 transform.position = new Vector2(-30, 19.59f);
+                anim.SetBool("isRun", false);
             }
-            if (transform.position.x >= -26.5f && transform.position.x <= -26.3f && transform.position.y > 19 && player.position.y > 19)
+            else if (transform.position.x >= -26.5f && transform.position.x <= -26.3f && transform.position.y > 19 && player.position.y > 19)
             {
                 transform.position = new Vector2(-30, 15.74f);
+                anim.SetBool("isRun", false);
             }
         }
     }
 
     void SecondPhase()
     {
-        StopAllCoroutines();
+        if (canSpawnEnemy == true) StartCoroutine(SpawnNuclear());
+        if (canTP == true) StartCoroutine(Teleport());
 
         anim.SetBool("attack1", false);
         anim.SetBool("attack2", false);
         anim.SetBool("attack3", false);
-        anim.SetBool("isRun", true);
+        anim.SetBool("isRun", false);
+        anim.SetBool("isJump", false);
     }
 
     void ThirdPhase()
@@ -224,6 +281,7 @@ public class Knight : MonoBehaviour
         {
             FindObjectOfType<PlayerController>().hp -= Random.Range(10, 15);
             FindObjectOfType<PlayerController>().hpValue.text = FindObjectOfType<PlayerController>().hp.ToString();
+            FindObjectOfType<PlayerController>().GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<PlayerController>().gettingDamage);
         }
         if (firstPhase == true)
         {
@@ -237,6 +295,32 @@ public class Knight : MonoBehaviour
 
         //anim.SetBool($"attack{animNumber}", false);
         //anim.SetBool("walk", true);
+    }
+
+    bool canSpawnEnemy = true;
+    IEnumerator SpawnNuclear()
+    {
+        canSpawnEnemy = false;
+        yield return new WaitForSeconds(2);
+        GameObject spawnNuclear = (GameObject)Instantiate(nuclear);
+        if (FindObjectOfType<PlayerController>().isFacingRight == false)
+        {
+            spawnNuclear.transform.position = new Vector3(player.position.x - 0.5f, player.position.y, player.position.z);
+        }
+        else
+        {
+            spawnNuclear.transform.position = new Vector3(player.position.x + 0.5f, player.position.y, player.position.z);
+        }
+        canSpawnEnemy = true;
+    }
+
+    bool canTP = true;
+    IEnumerator Teleport()
+    {
+        canTP = false;
+        yield return new WaitForSeconds(10);
+        transform.position = point[Random.Range(0, 4)].transform.position;
+        canTP = true;
     }
 
     IEnumerator Dead()

@@ -1706,6 +1706,7 @@ GameObject:
   - component: {fileID: 176916001}
   - component: {fileID: 176916002}
   - component: {fileID: 176916003}
+  - component: {fileID: 176916004}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Knight
@@ -1852,6 +1853,9 @@ MonoBehaviour:
   firstPhase: 0
   secondPhase: 0
   thirdPhase: 0
+  secondPhaseClip: {fileID: 8300000, guid: 434b4b47f167b81488f4863ac07cfa4a, type: 3}
+  thirdPhaseClip: {fileID: 8300000, guid: b37d5ed13ec895a41bd114a897f98fef, type: 3}
+  nuclear: {fileID: 8800794595143356994, guid: 09274ab4bf7c2104caf3558f623b7205, type: 3}
 --- !u!50 &176916002
 Rigidbody2D:
   serializedVersion: 4
@@ -1899,6 +1903,102 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.37293977, y: 0.10006487}
   m_EdgeRadius: 0
+--- !u!82 &176916004
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176915996}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.799
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 144
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &185540215
 GameObject:
   m_ObjectHideFlags: 0
@@ -33330,6 +33430,7 @@ MonoBehaviour:
   attack2: {fileID: 8300000, guid: 5e46b5c04a4f653408493761b625e59c, type: 3}
   attack3: {fileID: 8300000, guid: a32582c93fafa364bb817b51280e47cb, type: 3}
   attack4: {fileID: 8300000, guid: cb5209af147995f4981e5bf0904ce3dc, type: 3}
+  gettingDamage: {fileID: 8300000, guid: 7e5ea11a72a3d3245890d09979200b25, type: 3}
   hpValue: {fileID: 2077229070}
   dialogTrader2: {fileID: 0}
   dialogTrader3: {fileID: 0}

@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip attack2;
     public AudioClip attack3;
     public AudioClip attack4;
+    public AudioClip gettingDamage;
 
     private ScriptTrigger scriptTrigger;
 
@@ -207,6 +208,20 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") != 0 && ground)
             {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    if (!audioSource.isPlaying)
+                    {
+                        audioSource.PlayOneShot(walkClip);
+                    }
+                }
+                else
+                {
+                    if (!audioSource.isPlaying)
+                    {
+                        audioSource.PlayOneShot(runClip);
+                    }
+                }
                 anim.SetBool("isRun", true);
                 isWalking = true;
             }

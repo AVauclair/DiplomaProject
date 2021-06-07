@@ -146,6 +146,7 @@ public class Warrior : MonoBehaviour
         {
             FindObjectOfType<PlayerController>().hp -= Random.Range(10, 15);
             FindObjectOfType<PlayerController>().hpValue.text = FindObjectOfType<PlayerController>().hp.ToString();
+            FindObjectOfType<PlayerController>().GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<PlayerController>().gettingDamage);
         }
 
         yield return new WaitForSeconds(0.6f);

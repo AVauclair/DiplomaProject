@@ -82,6 +82,7 @@ public class Nuclear : MonoBehaviour
         {
             FindObjectOfType<PlayerController>().hp -= Random.Range(1, 10);
             FindObjectOfType<PlayerController>().hpValue.text = FindObjectOfType<PlayerController>().hp.ToString();
+            FindObjectOfType<PlayerController>().GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<PlayerController>().gettingDamage);
             CalculateInertia(1000);
         }
         else if (Vector2.Distance(transform.position, player.position) < enemyTriggerDistance * 2 && Vector2.Distance(transform.position, player.position) > enemyTriggerDistance)
