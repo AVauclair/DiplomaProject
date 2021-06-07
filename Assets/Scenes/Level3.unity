@@ -4755,7 +4755,7 @@ MonoBehaviour:
   EndingDeath: {fileID: 0}
   EndingWin: {fileID: 0}
   endH2: {fileID: 0}
-  L3: {fileID: 0}
+  L3: {fileID: 411124025}
 --- !u!4 &849641706
 Transform:
   m_ObjectHideFlags: 0

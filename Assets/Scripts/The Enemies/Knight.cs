@@ -103,10 +103,12 @@ public class Knight : MonoBehaviour
                         {
                             transform.localScale *= new Vector2(-1, 1);
                             moveRight = false;
+                            speed = 1.8f;
                         }
 
                         if (transform.position.x == -25.95f && transform.position.y < 17 && player.position.y < 17)
                         {
+                            speed = 1.2f;
                             transform.position = new Vector2(-30, 17.51f);
                             firstPhase = true;
                             firstStep = false;
