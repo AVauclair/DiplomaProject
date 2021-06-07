@@ -63,18 +63,30 @@ public class Knight : MonoBehaviour
     }
 
     bool firstStep = true;
+    bool isEnd = false;
     private void Update()
     {
         if (hp <= 0)
         {
-            anim.SetBool("attack1", false);
-            anim.SetBool("attack2", false);
-            anim.SetBool("attack3", false);
-            anim.SetBool("isRun", false);
-            anim.SetBool("dead", true);
+            if (isEnd == false)
+            {
+                isEnd = true;
+                StopAllCoroutines();
+                firstPhase = false;
+                secondPhase = false;
+                thirdPhase = false;
+                anim.SetBool("attack1", false);
+                anim.SetBool("attack2", false);
+                anim.SetBool("attack3", false);
+                anim.SetBool("isRun", false);
+                anim.SetBool("isJump", false);
+                fightIsStarted = false;
 
-            StartCoroutine(Dead());
-            fightIsStarted = false;
+                hpObject.SetActive(false);
+
+                FindObjectOfType<ConditionScript>().sceneNumber = 23;
+                FindObjectOfType<ConditionScript>().ConditionsChecker();
+            }
         }
         if (FindObjectOfType<PlayerController>().punchToCheck == true && catchPlayer == true)
         {
@@ -82,7 +94,7 @@ public class Knight : MonoBehaviour
             hp -= Random.Range(20, 40);
             hpText.text = hp.ToString();
 
-            if (secondPhase == true)
+            if (secondPhase == true || thirdPhase == true)
             {
                 transform.position = point[Random.Range(0, 4)].transform.position;
             }
@@ -246,7 +258,7 @@ public class Knight : MonoBehaviour
 
     void SecondPhase()
     {
-        if (canSpawnEnemy == true) StartCoroutine(SpawnNuclear());
+        if (canSpawnEnemy == true) StartCoroutine(SpawnNuclear(2, 0.5f));
         if (canTP == true) StartCoroutine(Teleport());
 
         anim.SetBool("attack1", false);
@@ -258,7 +270,8 @@ public class Knight : MonoBehaviour
 
     void ThirdPhase()
     {
-
+        if (canSpawnEnemy == true) StartCoroutine(SpawnNuclear(4, 1.5f));
+        if (canTP == true) StartCoroutine(TeleportAndAttack());
     }
 
     int animNumber;
@@ -286,7 +299,7 @@ public class Knight : MonoBehaviour
             FindObjectOfType<PlayerController>().hpValue.text = FindObjectOfType<PlayerController>().hp.ToString();
             FindObjectOfType<PlayerController>().GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<PlayerController>().gettingDamage);
         }
-        if (firstPhase == true)
+        if (firstPhase == true || thirdPhase == true)
         {
             transform.position = point[Random.Range(0, 4)].transform.position;
         }
@@ -301,20 +314,23 @@ public class Knight : MonoBehaviour
     }
 
     bool canSpawnEnemy = true;
-    IEnumerator SpawnNuclear()
+    IEnumerator SpawnNuclear(int secondsToSpawn, float distanceToSpawn)
     {
         canSpawnEnemy = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(secondsToSpawn);
         GameObject spawnNuclear = (GameObject)Instantiate(nuclear);
         if (FindObjectOfType<PlayerController>().isFacingRight == false)
         {
-            spawnNuclear.transform.position = new Vector3(player.position.x - 0.5f, player.position.y, player.position.z);
+            spawnNuclear.transform.position = new Vector3(player.position.x - distanceToSpawn, player.position.y + 0.3f, player.position.z);
         }
         else
         {
-            spawnNuclear.transform.position = new Vector3(player.position.x + 0.5f, player.position.y, player.position.z);
+            spawnNuclear.transform.position = new Vector3(player.position.x + distanceToSpawn, player.position.y + 0.3f, player.position.z);
         }
         canSpawnEnemy = true;
+
+        yield return new WaitForSeconds(3);
+        Destroy(spawnNuclear);
     }
 
     bool canTP = true;
@@ -323,13 +339,26 @@ public class Knight : MonoBehaviour
         canTP = false;
         yield return new WaitForSeconds(10);
         transform.position = point[Random.Range(0, 4)].transform.position;
+        hp += Random.Range(20, 25);
+        hpText.text = hp.ToString();
         canTP = true;
     }
 
-    IEnumerator Dead()
+    IEnumerator TeleportAndAttack()
     {
-        yield return new WaitForSeconds(1f);
-        gameObject.SetActive(false);
+        canTP = false;
+        yield return new WaitForSeconds(2);
+        if (FindObjectOfType<PlayerController>().isFacingRight == false)
+        {
+            transform.position = new Vector3(player.position.x + 0.3f, player.position.y + 0.3f, player.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(player.position.x - 0.3f, player.position.y + 0.3f, player.position.z);
+        }
+        canTP = true;
+
+        StartCoroutine(Attack());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

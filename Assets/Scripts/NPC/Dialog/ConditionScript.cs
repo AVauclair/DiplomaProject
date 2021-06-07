@@ -48,6 +48,7 @@ public class ConditionScript : MonoBehaviour
     public GameObject dialogWithKnightL3;
     public GameObject ClosingDoorTrigger;
     public GameObject musicObject;
+    public GameObject dialogEndGame;
     public AudioClip bossFightSong;
     public AudioClip defaultSong;
 
@@ -57,6 +58,7 @@ public class ConditionScript : MonoBehaviour
     public PlayableDirector EndingWin;
     public PlayableDirector endH2;
     public PlayableDirector L3;
+    public PlayableDirector EndGame;
 
     public void ConditionsChecker()
     {
@@ -192,6 +194,19 @@ public class ConditionScript : MonoBehaviour
         if (sceneNumber == 21)
         {
             ClosingDoorTrigger.SetActive(true);
+        }
+
+        if (sceneNumber == 23)
+        {
+            FindObjectOfType<ConditionScript>().musicObject.GetComponent<AudioSource>().Stop();
+            FindObjectOfType<ConditionScript>().musicObject.GetComponent<AudioSource>().PlayOneShot(FindObjectOfType<ConditionScript>().defaultSong);
+            FindObjectOfType<ConditionScript>().dialogEndGame.SetActive(true);
+            FindObjectOfType<ConditionScript>().EndGame.Play();
+            StartCoroutine(FindObjectOfType<PlayerController>().CutScene7());
+        }
+        if (sceneNumber == 24)
+        {
+            Application.Quit();
         }
     }
 }

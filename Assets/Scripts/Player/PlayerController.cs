@@ -55,8 +55,13 @@ public class PlayerController : MonoBehaviour
     public GameObject dialogTrader2;
     public GameObject dialogTrader3;
 
+    bool canChangeLevel = true;
+    public bool canSetCheckpoint = true;
     private void Start()
     {
+        canChangeLevel = true;
+        canSetCheckpoint = true;
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
@@ -159,12 +164,15 @@ public class PlayerController : MonoBehaviour
         else
         {
             anim.SetBool("ground", ground);
-            Move();
-            Jump();
-            Push();
-            ShowInterface();
-            OpenMenu();
-            Attack();
+            if (inCutscene == false)
+            {
+                Move();
+                Jump();
+                Push();
+                ShowInterface();
+                OpenMenu();
+                Attack();
+            }
             if (rb.velocity.y == 0 && afterJump)
             {
                 anim.SetBool("isJump", false);
@@ -499,8 +507,6 @@ public class PlayerController : MonoBehaviour
             }
             FindObjectOfType<Knight>().hpObject.SetActive(true);
 
-            //FindObjectOfType<Knight>().fightIsStarted = true; //”¡–¿“‹
-
             Destroy(other.gameObject);
         }
 
@@ -535,50 +541,55 @@ public class PlayerController : MonoBehaviour
 
         if (other.tag == "NextLevelTrigger")
         {
-            PlayerPrefs.SetFloat("posX", transform.position.x);
-            PlayerPrefs.SetFloat("posY", transform.position.y);
-            PlayerPrefs.SetFloat("posZ", transform.position.z);
-            FindObjectOfType<LevelCount>().levelNumber++;
-            FindObjectOfType<ConditionScript>().sceneNumber++;
-            PlayerPrefs.SetInt("levelNumber", FindObjectOfType<LevelCount>().levelNumber);
-            PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
-            PlayerPrefs.SetInt("souls", souls);
-
-            if (FindObjectOfType<LevelCount>().levelNumber == 2)
+            if (canChangeLevel == true)
             {
-                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -8.92f);
-                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 0.1f);
+                canChangeLevel = false;
 
-                PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
+                PlayerPrefs.SetFloat("posX", transform.position.x);
+                PlayerPrefs.SetFloat("posY", transform.position.y);
+                PlayerPrefs.SetFloat("posZ", transform.position.z);
+                FindObjectOfType<LevelCount>().levelNumber++;
+                FindObjectOfType<ConditionScript>().sceneNumber++;
+                PlayerPrefs.SetInt("levelNumber", FindObjectOfType<LevelCount>().levelNumber);
+                PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
+                PlayerPrefs.SetInt("souls", souls);
+
+                if (FindObjectOfType<LevelCount>().levelNumber == 2)
+                {
+                    PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -8.92f);
+                    PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 0.1f);
+
+                    PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
+                }
+
+                if (FindObjectOfType<LevelCount>().levelNumber == 3)
+                {
+                    PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -20.45f);
+                    PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 12.8f);
+
+                    PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
+                    PlayerPrefs.SetInt("maxJumpValue", maxJumpValue);
+                    PlayerPrefs.SetInt("pushImpulse", pushImpulse);
+                    PlayerPrefs.SetInt("maxHP", maxHP);
+                }
+
+                if (FindObjectOfType<LevelCount>().levelNumber == 4)
+                {
+                    PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 25f);
+                    PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -20.45f);
+                }
+
+                if (FindObjectOfType<LevelCount>().levelNumber == 5)
+                {
+                    PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 25f);
+                    PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -20.45f);
+
+                    PlayerPrefs.SetInt("maxJumpValue", maxJumpValue);
+                    PlayerPrefs.SetInt("pushImpulse", pushImpulse);
+                    PlayerPrefs.SetInt("maxHP", maxHP);
+                }
+                SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
             }
-
-            if (FindObjectOfType<LevelCount>().levelNumber == 3)
-            {
-                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -20.45f);
-                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 12.8f);
-
-                PlayerPrefs.SetInt("havingWarriorSoul", havingWarriorSoul);
-                PlayerPrefs.SetInt("maxJumpValue", maxJumpValue);
-                PlayerPrefs.SetInt("pushImpulse", pushImpulse);
-                PlayerPrefs.SetInt("maxHP", maxHP);
-            }
-
-            if (FindObjectOfType<LevelCount>().levelNumber == 4)
-            {
-                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 25f);
-                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -20.45f);
-            }
-
-            if (FindObjectOfType<LevelCount>().levelNumber == 5)
-            {
-                PlayerPrefs.SetFloat("upLimit", FindObjectOfType<WatchPlayer>().upLimit = 25f);
-                PlayerPrefs.SetFloat("downLimit", FindObjectOfType<WatchPlayer>().downLimit = -20.45f);
-
-                PlayerPrefs.SetInt("maxJumpValue", maxJumpValue);
-                PlayerPrefs.SetInt("pushImpulse", pushImpulse);
-                PlayerPrefs.SetInt("maxHP", maxHP);
-            }
-            SceneManager.LoadScene(FindObjectOfType<LevelCount>().levelNumber);
         }
 
 
@@ -670,5 +681,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(14.5f);
         inCutscene = false;
         FindObjectOfType<Knight>().fightIsStarted = true;
+        FindObjectOfType<Knight>().hpObject.SetActive(true);
+    }
+    public IEnumerator CutScene7()
+    {
+        inCutscene = true;
+        yield return new WaitForSeconds(8.7f);
+        inCutscene = false;
     }
 }
