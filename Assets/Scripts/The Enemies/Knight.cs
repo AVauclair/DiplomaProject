@@ -92,7 +92,7 @@ public class Knight : MonoBehaviour
         {
             if (hp > 350)
             {
-
+                //firstPhase = true;
                 if (firstStep == true)
                 {
                     if (transform.position.x < -25.95f && transform.position.y < 17 && player.position.y < 17)
@@ -104,6 +104,7 @@ public class Knight : MonoBehaviour
                             transform.localScale *= new Vector2(-1, 1);
                             moveRight = false;
                             speed = 1.8f;
+                            Application.targetFrameRate = 300;
                         }
 
                         if (transform.position.x == -25.95f && transform.position.y < 17 && player.position.y < 17)
@@ -209,7 +210,7 @@ public class Knight : MonoBehaviour
                 }
             }
 
-            if (transform.position.x <= 26 && transform.position.x >= 25.9f && transform.position.y < 17 && player.position.y < 17)
+            if (transform.position.x >= -26 && transform.position.x <= -25.9f && transform.position.y < 17 && player.position.y < 17)
             {
                 transform.position = new Vector2(-30, 17.51f);
                 anim.SetBool("isRun", false);
@@ -263,14 +264,14 @@ public class Knight : MonoBehaviour
     int animNumber;
     IEnumerator Attack()
     {
-        if (player.position.x < transform.position.x && moveRight == true)
-        {
-            moveRight = false;
-            transform.localScale *= new Vector2(-1, 1);
-        }
-        else if (player.position.x > transform.position.x && moveRight == false)
+        if (player.position.x < transform.position.x && moveRight == false)
         {
             moveRight = true;
+            transform.localScale *= new Vector2(-1, 1);
+        }
+        else if (player.position.x > transform.position.x && moveRight == true)
+        {
+            moveRight = false;
             transform.localScale *= new Vector2(-1, 1);
         }
 

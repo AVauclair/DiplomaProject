@@ -498,6 +498,9 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(CutScene6());
             }
             FindObjectOfType<Knight>().hpObject.SetActive(true);
+
+            //FindObjectOfType<Knight>().fightIsStarted = true; //”¡–¿“‹
+
             Destroy(other.gameObject);
         }
 
@@ -662,8 +665,9 @@ public class PlayerController : MonoBehaviour
     }
     public IEnumerator CutScene6()
     {
+        Application.targetFrameRate = 30;
         inCutscene = true;
-        yield return new WaitForSeconds(14);
+        yield return new WaitForSeconds(14.5f);
         inCutscene = false;
         FindObjectOfType<Knight>().fightIsStarted = true;
     }
