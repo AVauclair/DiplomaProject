@@ -339,7 +339,7 @@ public class Knight : MonoBehaviour
         canTP = false;
         yield return new WaitForSeconds(10);
         transform.position = point[Random.Range(0, 4)].transform.position;
-        hp += Random.Range(20, 25);
+        hp += Random.Range(15, 20);
         hpText.text = hp.ToString();
         canTP = true;
     }

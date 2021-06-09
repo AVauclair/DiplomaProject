@@ -190,6 +190,8 @@ public class ConditionScript : MonoBehaviour
             sceneNumber++;
             PlayerPrefs.SetInt("sceneNumber", FindObjectOfType<ConditionScript>().sceneNumber);
             PlayerPrefs.Save();
+
+            Destroy(ClosingDoorTrigger);
         }
         if (sceneNumber == 21)
         {

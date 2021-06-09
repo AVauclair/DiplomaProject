@@ -83,7 +83,10 @@ public class PlayerController : MonoBehaviour
             hpValue.text = hp.ToString();
         }
 
-        FindObjectOfType<ConditionScript>().tilemapDoorL3.SetActive(false);
+        if (FindObjectOfType<ConditionScript>().sceneNumber == 21)
+        {
+            FindObjectOfType<ConditionScript>().tilemapDoorL3.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -216,6 +219,11 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") != 0 && ground)
             {
+                anim.SetBool("isRun", true);
+                isWalking = true;
+            }
+            if (Input.GetAxis("Horizontal") != 0 && jumpCount == 0)
+            {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     if (!audioSource.isPlaying)
@@ -230,8 +238,6 @@ public class PlayerController : MonoBehaviour
                         audioSource.PlayOneShot(runClip);
                     }
                 }
-                anim.SetBool("isRun", true);
-                isWalking = true;
             }
         }
         if (Input.GetAxis("Horizontal") == 0)
@@ -286,17 +292,20 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && !pushLock)
         {
-            pushLock = true;
-            PushLock();
-            //Invoke("PushLock", 0.5f);
-            audioSource.PlayOneShot(pushClip);
-            if (!isFacingRight)
+            if (pushImpulse != 0)
             {
-                rb.AddForce(Vector2.left * pushImpulse);
-            }
-            else
-            {
-                rb.AddForce(Vector2.right * pushImpulse);
+                pushLock = true;
+                PushLock();
+                //Invoke("PushLock", 0.5f);
+                audioSource.PlayOneShot(pushClip);
+                if (!isFacingRight)
+                {
+                    rb.AddForce(Vector2.left * pushImpulse);
+                }
+                else
+                {
+                    rb.AddForce(Vector2.right * pushImpulse);
+                }
             }
         }
     }
@@ -311,13 +320,16 @@ public class PlayerController : MonoBehaviour
     int animNumber;
     private void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ground == true && isCrawling == false && attack == true)
+        if (FindObjectOfType<LevelCount>().levelNumber > 1)
         {
-            animNumber = Random.Range(1, 5);
-            attack = false;
-            StopAllCoroutines();
-            anim.SetBool($"isAttack{animNumber}", true);
-            StartCoroutine(AttackReload());
+            if (Input.GetKeyDown(KeyCode.Mouse0) && ground == true && isCrawling == false && attack == true)
+            {
+                animNumber = Random.Range(1, 5);
+                attack = false;
+                StopAllCoroutines();
+                anim.SetBool($"isAttack{animNumber}", true);
+                StartCoroutine(AttackReload());
+            }
         }
     }
 
@@ -505,7 +517,6 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(CutScene6());
             }
-            FindObjectOfType<Knight>().hpObject.SetActive(true);
 
             Destroy(other.gameObject);
         }

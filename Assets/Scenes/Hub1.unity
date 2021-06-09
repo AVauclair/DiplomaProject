@@ -24127,18 +24127,21 @@ MonoBehaviour:
   isWalking: 0
   highSpeed: 0
   isDead: 0
+  inCutscene: 0
   rb: {fileID: 0}
-  pushClip: {fileID: 0}
-  jumpClip: {fileID: 0}
-  walkClip: {fileID: 0}
-  runClip: {fileID: 0}
-  attack1: {fileID: 0}
-  attack2: {fileID: 0}
-  attack3: {fileID: 0}
-  attack4: {fileID: 0}
+  pushClip: {fileID: 8300000, guid: f93d27615085c5c4695f118bf5948749, type: 3}
+  jumpClip: {fileID: 8300000, guid: ee023051f2945b8438ba8387597ca7ac, type: 3}
+  walkClip: {fileID: 8300000, guid: ea570413578b2a7419487a37907d33a1, type: 3}
+  runClip: {fileID: 8300000, guid: 3e800e25821e2594a849d6f23c8bd44a, type: 3}
+  attack1: {fileID: 8300000, guid: af8b40e71cabb2b48820bc3805fce841, type: 3}
+  attack2: {fileID: 8300000, guid: 5e46b5c04a4f653408493761b625e59c, type: 3}
+  attack3: {fileID: 8300000, guid: a32582c93fafa364bb817b51280e47cb, type: 3}
+  attack4: {fileID: 8300000, guid: cb5209af147995f4981e5bf0904ce3dc, type: 3}
+  gettingDamage: {fileID: 8300000, guid: 7e5ea11a72a3d3245890d09979200b25, type: 3}
   hpValue: {fileID: 1620452265}
   dialogTrader2: {fileID: 1421416589}
   dialogTrader3: {fileID: 1221885661}
+  canSetCheckpoint: 1
   jumpForce: 3
   jumpCount: 0
   maxJumpValue: 1
@@ -24540,6 +24543,7 @@ MonoBehaviour:
   dialogWithKnightL3: {fileID: 0}
   ClosingDoorTrigger: {fileID: 0}
   musicObject: {fileID: 0}
+  dialogEndGame: {fileID: 0}
   bossFightSong: {fileID: 0}
   defaultSong: {fileID: 0}
   takeGuardian: {fileID: 0}
@@ -24547,6 +24551,7 @@ MonoBehaviour:
   EndingWin: {fileID: 0}
   endH2: {fileID: 0}
   L3: {fileID: 0}
+  EndGame: {fileID: 0}
 --- !u!4 &1367335292
 Transform:
   m_ObjectHideFlags: 0

@@ -3547,18 +3547,21 @@ MonoBehaviour:
   isWalking: 0
   highSpeed: 0
   isDead: 0
+  inCutscene: 0
   rb: {fileID: 0}
-  pushClip: {fileID: 0}
-  jumpClip: {fileID: 0}
-  walkClip: {fileID: 0}
-  runClip: {fileID: 0}
-  attack1: {fileID: 0}
-  attack2: {fileID: 0}
-  attack3: {fileID: 0}
-  attack4: {fileID: 0}
+  pushClip: {fileID: 8300000, guid: f93d27615085c5c4695f118bf5948749, type: 3}
+  jumpClip: {fileID: 8300000, guid: ee023051f2945b8438ba8387597ca7ac, type: 3}
+  walkClip: {fileID: 8300000, guid: ea570413578b2a7419487a37907d33a1, type: 3}
+  runClip: {fileID: 8300000, guid: 3e800e25821e2594a849d6f23c8bd44a, type: 3}
+  attack1: {fileID: 8300000, guid: af8b40e71cabb2b48820bc3805fce841, type: 3}
+  attack2: {fileID: 8300000, guid: 5e46b5c04a4f653408493761b625e59c, type: 3}
+  attack3: {fileID: 8300000, guid: a32582c93fafa364bb817b51280e47cb, type: 3}
+  attack4: {fileID: 8300000, guid: cb5209af147995f4981e5bf0904ce3dc, type: 3}
+  gettingDamage: {fileID: 8300000, guid: 7e5ea11a72a3d3245890d09979200b25, type: 3}
   hpValue: {fileID: 0}
   dialogTrader2: {fileID: 0}
   dialogTrader3: {fileID: 0}
+  canSetCheckpoint: 1
   jumpForce: 3
   jumpCount: 0
   maxJumpValue: 300
@@ -34496,7 +34499,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.015556335, y: 0}
+  m_Offset: {x: -0.015556335, y: -0.07265714}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -34507,7 +34510,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18852997, y: 0.38}
+  m_Size: {x: 0.18852997, y: 0.5253143}
   m_EdgeRadius: 0
 --- !u!95 &803001534
 Animator:
@@ -116234,6 +116237,7 @@ MonoBehaviour:
   dialogWithKnightL3: {fileID: 0}
   ClosingDoorTrigger: {fileID: 0}
   musicObject: {fileID: 0}
+  dialogEndGame: {fileID: 0}
   bossFightSong: {fileID: 0}
   defaultSong: {fileID: 0}
   takeGuardian: {fileID: 1833461745}
@@ -116241,6 +116245,7 @@ MonoBehaviour:
   EndingWin: {fileID: 810291151}
   endH2: {fileID: 0}
   L3: {fileID: 0}
+  EndGame: {fileID: 0}
 --- !u!1 &2067032862
 GameObject:
   m_ObjectHideFlags: 0
