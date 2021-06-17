@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     public bool canSetCheckpoint = true;
     private void Start()
     {
+
         canChangeLevel = true;
         canSetCheckpoint = true;
 
@@ -687,12 +688,15 @@ public class PlayerController : MonoBehaviour
     }
     public IEnumerator CutScene6()
     {
+        QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 30;
         inCutscene = true;
         yield return new WaitForSeconds(14.5f);
         inCutscene = false;
         FindObjectOfType<Knight>().fightIsStarted = true;
         FindObjectOfType<Knight>().hpObject.SetActive(true);
+        yield return new WaitForSeconds(1);
+        QualitySettings.vSyncCount = 1;
     }
     public IEnumerator CutScene7()
     {
